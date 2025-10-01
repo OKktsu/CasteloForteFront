@@ -1,0 +1,233 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- Estrutura da Página ---
+.page-container {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.page-header {
+    margin-bottom: 10px;
+}
+
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $text-color-dark;
+    margin: 0;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #6a7f9d;
+}
+
+// --- Estilos de Card ---
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.2s ease-in-out; // Mantém a transição apenas para a sombra
+
+    &:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    }
+}
+
+// Adiciona a borda azul apenas ao primeiro card (o de formulário)
+.page-container > .card:first-child {
+    border-top: 4px solid $card-border-color;
+}
+
+.card-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: $text-color-dark;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-description {
+    color: #4a5568;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.card-footer {
+    padding: 20px 25px;
+    background-color: #f7fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+// --- Estilos de Formulário ---
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: $text-color-dark;
+        font-size: 0.9rem;
+    }
+
+    input,
+    textarea {
+        padding: 10px 12px;
+        border: 1px solid #cbd5e0;
+        border-radius: 6px;
+        font-family: $main-font;
+        font-size: 0.95rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+
+        &:focus {
+            outline: none;
+            border-color: $accent-color;
+            box-shadow: 0 0 0 3px rgba($accent-color, 0.2); // Sombra de foco mais visível
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+}
+
+// --- Estilos de Botões Específicos ---
+.btn-main-action {
+    background-color: $main-action-color;
+    color: $text-color-dark;
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: color.adjust($main-action-color, $lightness: -8%);
+    }
+}
+
+.btn-save {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+// --- Estilos de Tabela ---
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    thead th {
+        background-color: #f8fafc;
+        font-size: 0.75rem;
+        color: #6a7f9d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+        transition: background-color 0.2s ease;
+        &:hover {
+            background-color: #fcfdff;
+        }
+    }
+
+    tbody td {
+        font-size: 0.9rem;
+        color: #4a5568;
+    }
+}
+
+// --- Badge de Status ---
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    
+    &.status-concluida {
+        background-color: $status-success-bg;
+        color: $status-success-text;
+    }
+}
+
+// --- Botões de Ação na Tabela ---
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6a7f9d;
+    font-size: 1.1rem;
+    padding: 5px;
+    transition: color 0.2s;
+
+    &:hover {
+        color: $text-color-dark;
+    }
+}
+
+// --- Responsividade ---
+@media (max-width: $breakpoint-md) {
+    .page-container {
+        padding: 15px;
+    }
+    
+    .card-body, .card-header, .card-footer {
+        padding: 15px;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        align-items: stretch;
+
+        .btn-main-action, .btn-save {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
