@@ -1,0 +1,50 @@
+<div class="page-container">
+    <div class="page-header">
+        <div class="header-content">
+            <h1 class="page-title">Relatório Castelo Forte</h1>
+            <nav class="breadcrumb">Módulo: Gestão de Clientes</nav>
+        </div>
+    </div>
+
+    <p class="info-banner">
+        Selecione os resumos das análises e ferramentas que você deseja incluir para gerar um relatório consolidado da saúde do seu Castelo Forte.
+    </p>
+
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Fontes de Dados para o Relatório:</h2>
+        </div>
+        <div class="card-body">
+            <div class="report-grid">
+                @for (fonte of fontesDeDados; track fonte.id) {
+                    <label class="report-item" [class.selected]="fonte.selecionado">
+                        <input type="checkbox" [(ngModel)]="fonte.selecionado">
+                        <div class="item-content">
+                            <span class="item-title">{{ fonte.titulo }}</span>
+                            <span class="item-description">{{ fonte.descricao }}</span>
+                        </div>
+                    </label>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="action-center">
+        <button class="btn btn-primary">Gerar Relatório Consolidado</button>
+    </div>
+
+    <div class="ia-analysis-section">
+        <h2 class="section-title">Análises de IA</h2>
+        <p class="section-subtitle">Histórico de análises geradas para esta ferramenta.</p>
+        <div class="empty-state">
+            <p><strong>Nenhuma análise encontrada.</strong></p>
+            <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <button class="btn btn-primary btn-save">
+            <i class="fa-solid fa-save"></i> Salvar
+        </button>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Vieses Cognitivos</h1>
+      <p class="page-subtitle">Módulo: Plano Estandarte</p>
+    </div>
+  </div>
+
+  <div class="info-banner">
+    <p>Reflita sobre os atalhos mentais que sua mente usa e que podem impactar suas finanças. Use esta ferramenta como um diário de autoconhecimento.</p>
+  </div>
+
+  @for (vies of vieses; track vies.titulo) {
+    <div class="card vies-card">
+      <div class="card-body">
+        <h2 class="vies-title">{{ vies.titulo }}</h2>
+        <p class="vies-description">{{ vies.descricao }}</p>
+
+        <div class="highlight-box example">
+          <strong>Exemplo Prático:</strong>
+          <p>{{ vies.exemploPratico }}</p>
+        </div>
+
+        <div class="highlight-box antidote">
+          <strong>Antídoto Castelo Forte:</strong>
+          <p>{{ vies.antidoto }}</p>
+        </div>
+
+        <div class="assessment-section">
+          <label>Você já se pegou pensando ou agindo assim?</label>
+          <div class="assessment-buttons">
+            @for (opcao of opcoesAvaliacao; track opcao) {
+              <button class="btn"
+                      [class.btn-secondary]="vies.avaliacao === opcao"
+                      [class.btn-light]="vies.avaliacao !== opcao"
+                      (click)="selectAvaliacao(vies, opcao)">
+                {{ opcao }}
+              </button>
+            }
+          </div>
+          <textarea rows="3" placeholder="Anote exemplos pessoais ou reflexões aqui..." [(ngModel)]="vies.reflexao"></textarea>
+        </div>
+      </div>
+    </div>
+  }
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+      <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+</div>

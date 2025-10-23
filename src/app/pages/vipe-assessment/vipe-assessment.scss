@@ -1,0 +1,72 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS ESPECÍFICOS DA PÁGINA ---
+
+.alert-banner {
+  background-color: rgba($accent-color, 0.1);
+  border: 1px solid rgba($accent-color, 0.3);
+  border-left: 5px solid $accent-color;
+  padding: 20px 25px;
+  border-radius: 8px;
+  color: $text-color-dark;
+}
+
+.alert-title {
+  margin-top: 0;
+  color: $accent-color;
+  font-weight: 600;
+}
+
+.alert-suggestion {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba($accent-color, 0.2);
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  
+  .fa-triangle-exclamation {
+    color: $accent-color;
+    font-size: 1.2rem;
+    margin-top: 4px;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.6;
+  }
+}
+
+.intro-text {
+  line-height: 1.6;
+  color: color.adjust($text-color-dark, $lightness: 20%);
+}
+
+.form-group {
+  margin-top: 25px;
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+
+  textarea {
+    width: 98%;
+    border: 1px solid $border-color;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    &:focus { outline-color: $accent-color; }
+  }
+}
+
+.btn-disabled {
+  background-color: #e2e8f0;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}

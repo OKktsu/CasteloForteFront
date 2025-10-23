@@ -1,0 +1,79 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS GERAIS DA PÁGINA ---
+.page-container { padding: 25px; display: flex; flex-direction: column; gap: 25px; }
+.page-header { display: flex; align-items: center; gap: 20px; }
+.header-icon-wrapper { font-size: 2.5rem; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; background-color: $secondary-bg-color; color: $accent-color; border-radius: 8px; }
+.page-title { font-size: 2rem; color: $text-color-dark; margin: 0; }
+.page-subtitle { color: $text-color-light; opacity: 0.8; margin: 5px 0 0 0; }
+.page-description { color: $text-color-light; margin: 0; }
+.card { background-color: #ffffff; border-radius: 12px; padding: 25px; border: 1px solid $border-color; color: $text-color-dark; }
+.card-header { padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid $border-color; }
+.card-title { font-size: 1.25rem; margin: 0; }
+.card-subtitle { font-size: 0.9rem; font-weight: 300; color: color.adjust($text-color-dark, $lightness: 30%); margin-top: 4px; }
+.action-bar { margin-top: 20px; }
+.btn-full-width { width: 100%; }
+.page-footer { display: flex; justify-content: flex-end; }
+.info-banner { background-color: #ffffff; border: 1px solid $border-color; border-left: 5px solid $accent-color; padding: 15px 20px; border-radius: 8px; color: $text-color-dark; }
+
+
+// --- ESTILOS DAS ABAS ---
+.tabs-nav { display: flex; flex-wrap: wrap; gap: 5px; border-bottom: 1px solid $secondary-bg-color; }
+.tab-button {
+  border: none; background: none; color: $text-color-light; padding: 10px 12px;
+  cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s ease; opacity: 0.7; font-size: 0.9rem;
+  &:hover { opacity: 1; background-color: $secondary-bg-color; }
+  &.active { border-bottom-color: $accent-color; color: $accent-color; opacity: 1; font-weight: bold; }
+}
+
+// --- ESTILOS GERAIS DOS FORMULÁRIOS ---
+.form-group {
+  display: flex; flex-direction: column;
+  label { margin-bottom: 8px; font-size: 0.9rem; }
+  input, select, textarea {
+    border: 1px solid $border-color; padding: 10px 12px; border-radius: 8px; font-size: 1rem; width: 90%;
+    &:focus { outline-color: $accent-color; }
+  }
+}
+.form-group.span-2 { grid-column: span 2; }
+.form-group.span-3 { grid-column: span 3; }
+.form-group.span-4 { grid-column: span 4; }
+
+// --- ESTILOS POR ABA ---
+.form-grid-sala-guerra { display: grid; grid-template-columns: 2fr 1fr auto; gap: 20px; align-items: flex-end; }
+.form-grid-financiamento { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.form-grid-aquisicao { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.vpl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin: 20px 0; }
+.vpl-scenario { background-color: color.adjust($border-color, $lightness: 5%); padding: 15px; border-radius: 8px; }
+.form-grid-valuation { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 20px; }
+.form-grid-aposentadoria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.form-grid-carreira { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.form-grid-social { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.form-grid-familiar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+// --- ESTILOS DOS RESULTADOS ---
+.result-grid { margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.result-box { border: 1px solid $border-color; border-radius: 8px; }
+.result-header { padding: 10px 15px; background-color: color.adjust($border-color, $lightness: 5%); border-bottom: 1px solid $border-color; font-size: 0.9rem; font-weight: bold; }
+.amortization-table { max-height: 200px; overflow-y: auto; font-size: 0.9rem; }
+.table-row { display: flex; justify-content: space-between; padding: 8px 15px; &:nth-child(odd) { background-color: color.adjust($border-color, $lightness: 7%); } }
+.result-bar-container { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.result-bar { display: flex; justify-content: space-between; background-color: $status-success-bg; color: $status-success-text; padding: 15px; border-radius: 8px; font-weight: bold; }
+.result-aposentadoria {
+  margin-top: 20px; border-top: 1px solid $border-color; padding-top: 20px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+  div { display: flex; justify-content: space-between; font-size: 1.1rem; }
+  strong.negative { color: $logout-red; }
+}
+
+// --- RESPONSIVIDADE ---
+@media (max-width: $breakpoint-md) {
+  .tabs-nav { justify-content: center; }
+  .form-grid-sala-guerra, .form-grid-financiamento, .form-grid-aquisicao, .vpl-grid,
+  .form-grid-valuation, .form-grid-aposentadoria, .form-grid-carreira, .form-grid-social, .form-grid-familiar,
+  .result-grid, .result-aposentadoria {
+    grid-template-columns: 1fr;
+    .form-group.span-2, .form-group.span-3, .form-group.span-4 { grid-column: auto; }
+  }
+}

@@ -1,0 +1,102 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Geometria Pessoal</h1>
+      <p class="page-subtitle">Módulo: Métodos VIPE</p>
+    </div>
+  </div>
+
+  <div class="info-banner">
+    <p>Esta ferramenta é o alicerce do seu "Castelo Forte". Ao refletir sobre as "Três Pedras Angulares" e definir suas "Estruturas Fundamentais", você estabelece a "planta baixa" da sua vida financeira ideal e sua "Constituição Pessoal/Familiar".</p>
+    <p>Sua "Geometria Pessoal" é a combinação única do seu Propósito, Prioridades e Pessoas, e como suas finanças servem a essa geometria.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="form-section">
+        <label class="section-label">Preenchendo para:</label>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input type="radio" id="pessoa" value="pessoa" name="preenchidoPara" [(ngModel)]="geometriaData.preenchidoPara">
+            <label for="pessoa">1 Pessoa</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="casal" value="casal" name="preenchidoPara" [(ngModel)]="geometriaData.preenchidoPara">
+            <label for="casal">2 Pessoas (Casal/Sócios)</label>
+          </div>
+        </div>
+      </div>
+      
+      <hr class="divider">
+
+      <div class="form-section">
+        <h2 class="section-title">Suas Respostas e Estruturas</h2>
+        <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" [(ngModel)]="geometriaData.nome">
+        </div>
+        
+        <h3 class="subsection-title">As Três Pedras Angulares do Seu Castelo</h3>
+        <div class="form-group">
+          <label for="pedra1">Pedra Angular 1 (Visão Ideal do Castelo): Imagine que você tem segurança financeira total, para sempre. O que você faria da sua vida? Como a viveria?</label>
+          <textarea id="pedra1" rows="5" [(ngModel)]="geometriaData.pedraAngular1"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="pedra2">Pedra Angular 2 (Estrutura Essencial do Castelo): Agora, imagine que você descobre que só tem mais 5 a 10 anos de vida, mas com saúde garantida nesse período. O que você faria? O que mudaria?</label>
+          <textarea id="pedra2" rows="5" [(ngModel)]="geometriaData.pedraAngular2"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="pedra3">Pedra Angular 3 (Fundações Eternas e Legado do Castelo): Finalmente, imagine que seu médico diz que você só tem mais 24 horas de vida. Olhando para trás, quais foram seus maiores arrependimentos? O que você não fez ou não foi?</label>
+          <textarea id="pedra3" rows="5" [(ngModel)]="geometriaData.pedraAngular3"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">As 3 Estruturas Fundamentais</h2>
+      <p class="card-subtitle">Responda às três perguntas que definem a essência do seu "Castelo Forte".</p>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="proposito">Qual seu Propósito? (A missão que guia seu Castelo)</label>
+        <textarea id="proposito" rows="4" [(ngModel)]="geometriaData.proposito" placeholder="O que você quer realizar que seja maior que você mesmo?"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="prioridades">Quais suas Prioridades? (As atividades essenciais dentro do Castelo)</label>
+        <textarea id="prioridades" rows="4" [(ngModel)]="geometriaData.prioridades" placeholder="Onde você quer investir seu tempo e energia? O que é inegociável?"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="pessoas">Que Pessoas? (Os habitantes e aliados mais importantes do seu Castelo)</label>
+        <textarea id="pessoas" rows="4" [(ngModel)]="geometriaData.pessoas" placeholder="Para quem e com quem você está construindo seu legado?"></textarea>
+      </div>
+      <div class="panel-footer"><button class="btn btn-primary">Analisar com IA Castelo Forte</button></div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header"><h2 class="card-title">Filosofia Castelo Forte: A Constituição Pessoal/Familiar</h2></div>
+    <div class="card-body philosophy-content">
+      <p><strong>A Importância da Descoberta:</strong> Entender sua Geometria Pessoal (Propósito, Prioridades, Pessoas) através da reflexão sobre as "Três Pedras Angulares do Seu Castelo" é o primeiro e mais crucial passo. Sem essa clareza, qualquer plano financeiro, por mais tecnicamente perfeito que seja, corre o risco de ser abandonado ou de não trazer verdadeira satisfação (Funded Contentment).</p>
+      <p><strong>A Constituição Pessoal/Familiar:</strong> Este documento, co-criado com a ajuda da IA com base nas suas respostas, torna-se a "lei maior" do seu Castelo Forte. Todas as decisões financeiras futuras (como as que você tomará no Orçamento Base Zero e ao definir seus Planos e Projetos) devem ser filtradas por esta constituição para garantir alinhamento e integridade.</p>
+      <p><strong>Referência Contínua:</strong> Sua Constituição não é um documento estático. Releia-o periodicamente, especialmente antes de grandes decisões financeiras ou ao revisar seus Planos e Projetos. Ele é a sua bússola.</p>
+      <p><strong>VIPE como Alicerce:</strong> Seus Valores Inegociáveis e Princípios Eternos (VIPE) são o concreto sobre o qual seu Castelo é construído. Eles garantem que seu planejamento financeiro não seja apenas sobre acumular riqueza, mas sobre construir Riqueza de Vida.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+</div>

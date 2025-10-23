@@ -1,0 +1,156 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Orçamento - Base Zero</h1>
+      <p class="page-subtitle">Módulo: APP Castelo Forte</p>
+    </div>
+  </div>
+  
+  <div class="disabled-content">
+    <div class="alert-banner warning">
+      <h3 class="alert-title">Ferramenta em Construção</h3>
+      <p>O Orçamento Base Zero está sendo aprimorado para oferecer uma experiência completa de planejamento financeiro integrada à metodologia Castelo Forte.</p>
+      <div class="alert-suggestion">
+        <div>
+          <strong>Em breve você terá acesso a:</strong>
+          <ul>
+            <li>Sistema automatizado de importação de extratos bancários</li>
+            <li>Categorização inteligente baseada em IA</li>
+            <li>Integração completa com Planos e Projetos</li>
+            <li>Análises preditivas de fluxo de caixa</li>
+            <li>Relatórios personalizados de performance financeira</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <p class="info-banner">
+      O Orçamento Base Zero é o alicerce da muralha financeira do seu Castelo Forte. Aqui, cada Real tem um propósito, alinhado com sua Constituição Pessoal.
+    </p>
+    
+    <div class="card">
+      <div class="card-body month-selector">
+        <h3>Mês de Referência</h3>
+        <div class="navigator">
+          <button class="btn btn-icon" disabled><i class="fa-solid fa-chevron-left"></i></button>
+          <span class="month-display">{{ mesReferencia }}</span>
+          <button class="btn btn-icon" disabled><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <select disabled><option>setembro de 2025</option></select>
+      </div>
+    </div>
+
+    <div class="two-column-grid">
+      <div class="card">
+        <div class="card-header"><h2 class="card-title">Status do Orçamento</h2></div>
+        <div class="card-body">
+          <div class="status-tag neutral">Sem despesas planejadas</div>
+          <div class="alert-box error"><strong>Aviso:</strong> Erro ao carregar transações</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h2 class="card-title">Análise Histórica</h2></div>
+        <div class="card-body kpi-row">
+          <div><span>Meses com dados:</span><strong>0/3</strong></div>
+          <div><span>Confiança:</span><strong>0%</strong></div>
+          <div><span>Renda média:</span><strong>R$ 0,00</strong></div>
+          <div><span>Despesa média:</span><strong>R$ 0,00</strong></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-body two-column-grid">
+        <div>
+          <label>Versão do Orçamento</label>
+          <select disabled><option>Nenhuma versão disponível</option></select>
+        </div>
+        <div class="edit-control">
+          <label>Controle de Edição</label>
+          <div class="alert-box warning">O orçamento deve estar em status "aberto" para ser bloqueado.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h2 class="card-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Gerador Automático de Orçamento</h2></div>
+      <div class="card-body generator-body">
+        <p>Análise inteligente dos últimos 3 meses + Metodologia Castelo Forte</p>
+        <div class="generator-options">
+          <div><i class="fa-solid fa-chart-line"></i><span>Análise Histórica</span><small>Últimos 3 meses de transações</small></div>
+          <div><i class="fa-solid fa-pie-chart"></i><span>Modelo 50/30/20</span><small>Distribuição inteligente</small></div>
+          <div><i class="fa-solid fa-flag-checkered"></i><span>Base Zero</span><small>Receitas = Despesas</small></div>
+        </div>
+        <button class="btn btn-primary" disabled><i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Orçamento Automático</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h2 class="card-title"><i class="fa-solid fa-file-alt"></i> Gestão de Arquivos</h2></div>
+      <div class="card-body action-buttons">
+        <button class="btn btn-secondary" disabled>Gerenciar Arquivos</button>
+        <button class="btn btn-secondary" disabled>Analisar Transações</button>
+        <button class="btn btn-secondary" disabled>Sugerir Orçamento</button>
+        <button class="btn btn-secondary" disabled>Detectar Recorrentes</button>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Planejamento Mensal do Seu Castelo - {{ mesReferencia }}</h2></div>
+      <div class="card-body planning-section">
+        <div class="form-group"><label>Renda Mensal Planejada (Entradas no Tesouro):</label><input type="text" value="R$ 0,00" disabled></div>
+        <div class="saldo-box"><span>Saldo Base Zero (Planejado):</span><strong>R$ 0,00</strong><small>Reflete! Cada Real com um destino.</small></div>
+      </div>
+      <div class="card-body expense-section">
+        <label>Despesas Mensais Planejadas (Saídas do Tesouro):</label>
+        <div class="input-group"><input type="text" placeholder="Nova Categoria de Despesa" disabled><button class="btn btn-primary" disabled>Adicionar</button></div>
+        <div class="total-expenses">Total Despesas Planejadas: <strong>R$ 0,00</strong></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-header d-flex-between">
+        <h2 class="card-title">Lançamentos do Mês (O Movimento Real do Tesouro)</h2>
+        <button class="btn btn-primary" disabled><i class="fa-solid fa-plus"></i> Novo Lançamento</button>
+      </div>
+      <div class="card-body kpi-row colored">
+        <div class="kpi-box green"><span>Receitas Realizadas</span><strong>R$ 0,00</strong></div>
+        <div class="kpi-box red"><span>Despesas Realizadas</span><strong>R$ 0,00</strong></div>
+        <div class="kpi-box blue"><span>Saldo Real do Mês</span><strong>R$ 0,00</strong></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Resumo por Categoria (Planejado vs. Realizado)</h2></div>
+      <div class="card-body category-summary-grid">
+        @for(categoria of categoriasResumo; track categoria.nome) {
+          <div class="category-item">
+            <label>{{ categoria.nome }}</label>
+            <span>Saldo:</span>
+            <strong>{{ categoria.saldo | currency:'BRL' }}</strong>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="card principles-card">
+      <div class="card-header"><h2 class="card-title"><i class="fa-solid fa-lightbulb"></i> Princípios Castelo Forte para seu Orçamento</h2></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Invista Primeiro ("Dízimo" para seu Futuro):</strong> Sua categoria "Investimentos" deve ser tratada como a primeira e mais importante despesa, não o que sobra.</li>
+          <li><strong>Alinhamento com a Constituição Pessoal:</strong> Cada categoria de despesa deve refletir os valores e prioridades definidos na sua Geometria Pessoal.</li>
+          <li><strong>Flexibilidade Consciente:</strong> O orçamento não é uma prisão, mas um mapa. Ajustes são permitidos, desde que conscientes e alinhados com o objetivo maior do seu Castelo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <button class="btn btn-disabled btn-full-width" disabled>Gerar Relatório PDF</button>
+
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Análises de IA</h2></div>
+      <div class="card-body empty-state">
+        <p><strong>Nenhuma análise encontrada.</strong></p>
+      </div>
+    </div>
+  </div>
+</div>

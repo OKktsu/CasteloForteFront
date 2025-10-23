@@ -1,0 +1,140 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- Animações ---
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+// --- Layout Geral com Fundo Cinza Sutil ---
+.page-container {
+    background-color: #f8f9fa;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.page-title { font-weight: 700; color: $text-color-dark; }
+.page-description { font-weight: 300; color: $text-color-light; }
+
+// --- Cards de KPI ---
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.kpi-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+}
+
+.kpi-icon {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    &.icon-bg-blue { background-color: rgba($card-border-color, 0.1); color: $card-border-color; }
+    &.icon-bg-green { background-color: rgba($status-success-text, 0.1); color: $status-success-text; }
+    &.icon-bg-yellow { background-color: rgba($accent-color, 0.1); color: $accent-color; }
+}
+
+.kpi-content { display: flex; flex-direction: column; }
+.kpi-title { font-size: 0.9rem; color: $text-color-light; }
+.kpi-value { font-size: 1.75rem; font-weight: 700; color: $text-color-dark; }
+
+// --- Tabela de Dados e Filtros ---
+.data-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px;
+    background-color: #fff;
+}
+
+.filter-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.search-wrapper { position: relative; flex-grow: 1; .fa-search { position: absolute; top: 50%; transform: translateY(-50%); left: 15px; color: $text-color-light; } }
+.search-input, .filter-dropdown { padding: 12px 15px; border-radius: 8px; border: 1px solid $border-color; background-color: #fff; transition: border-color 0.2s; &:focus { border-color: $accent-color; outline: none; } }
+.search-input { width: 96%; padding-left: 40px; }
+.filters { display: flex; gap: 15px; }
+
+.table-wrapper { width: 100%; overflow-x: auto; border: 1px solid $border-color; border-radius: 8px; }
+.leads-table {
+    width: 100%;
+    border-collapse: collapse;
+    th, td { padding: 16px 20px; text-align: left; vertical-align: middle; }
+    th { font-size: 0.75rem; color: $text-color-light; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid $border-color; background-color: #f8f9fa; }
+    td { border-bottom: 1px solid $border-color; }
+    tbody tr { transition: background-color 0.2s ease; &:last-child td { border-bottom: none; } &:hover { background-color: #f8f9fa; } }
+}
+
+.user-cell { display: flex; align-items: center; gap: 12px; }
+.user-avatar { width: 32px; height: 32px; border-radius: 50%; background-color: $border-color; display: flex; align-items: center; justify-content: center; color: $text-color-light; }
+.contact-cell, .status-cell { display: flex; flex-direction: column; gap: 4px; }
+.text-light { color: $text-color-light; font-size: 0.9rem; }
+
+.badge {
+    padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; width: fit-content;
+    &.badge-green { background-color: rgba($status-success-text, 0.1); color: $status-success-text; }
+    &.badge-blue { background-color: rgba($card-border-color, 0.1); color: $card-border-color; }
+    &.badge-red { background-color: rgba($logout-red, 0.1); color: $logout-red; }
+    &.badge-yellow { background-color: rgba($accent-color, 0.1); color: $accent-color; }
+    &.badge-gray { background-color: $border-color; color: $text-color-light; }
+}
+
+.btn-icon { background-color: transparent; border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: $text-color-light; font-size: 1rem; transition: background-color 0.2s, color 0.2s; &:hover { background-color: $border-color; color: $text-color-dark; } }
+
+.pagination-controls { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; }
+.pagination-text { font-size: 0.9rem; color: $text-color-light; }
+.pagination-buttons { display: flex; gap: 5px; }
+.btn-pagination {
+    background-color: #fff; border: 1px solid $border-color; color: $text-color-light; border-radius: 6px; padding: 5px 10px; cursor: pointer; transition: all 0.2s;
+    &:hover { border-color: $accent-color; color: $accent-color; }
+    // CORRIGIDO: Paginação ativa com a cor de destaque
+    &.active { background-color: $accent-color; border-color: $accent-color; color: #fff; }
+}
+
+// --- Modal ---
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(black, 0.5); display: flex; justify-content: flex-end; z-index: 1000; animation: fadeIn 0.3s ease; }
+.modal-content { width: 100%; max-width: 600px; height: 96%; display: flex; flex-direction: column; background-color: #fff; animation: slideInFromRight 0.4s ease; padding: 25px; }
+.modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid $border-color; flex-shrink: 0; }
+.modal-title { font-weight: 700; }
+.modal-body { flex-grow: 1; overflow-y: auto; padding: 25px 5px 25px 0; display: flex; flex-direction: column; gap: 30px; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 15px; padding-top: 20px; border-top: 1px solid $border-color; flex-shrink: 0; }
+
+.btn-whatsapp { background-color: #25d366; color: white; &:hover { background-color: color.adjust(#25d366, $lightness: -10%); } }
+
+.section-title { font-size: 0.8rem; font-weight: 600; color: $text-color-light; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.info-item { display: flex; flex-direction: column; gap: 4px; span { font-size: 0.9rem; color: $text-color-light; } strong { color: $text-color-dark; } }
+
+.scores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 25px; }
+.progress-bar { width: 100%; height: 8px; background-color: $border-color; border-radius: 4px; overflow: hidden; }
+// CORRIGIDO: Barra de progresso com a cor de destaque
+.progress-bar-fill { height: 100%; background-color: $accent-color; border-radius: 4px; }

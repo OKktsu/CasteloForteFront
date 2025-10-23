@@ -1,0 +1,30 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+
+// --- EFEITO DE TELA DESATIVADA (NOVO) ---
+.disabled-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  opacity: 0.6;
+  pointer-events: none; // Impede qualquer clique
+}
+
+// --- ESTILOS ESPECÍFICOS DA TELA ---
+.alert-banner.warning { background-color: rgba($accent-color, 0.1); border: 1px solid rgba($accent-color, 0.3); border-left: 5px solid $accent-color; padding: 20px 25px; border-radius: 8px; color: $text-color-dark; }
+.alert-title { margin-top: 0; color: $accent-color; }
+.alert-suggestion ul { margin: 0; padding-left: 20px; }
+.alert-box { padding: 10px; border-radius: 6px; font-size: 0.9rem; margin-top: 10px; &.warning { background-color: rgba($accent-color, 0.1); } &.error { background-color: rgba($logout-red, 0.1); color: $logout-red; } }
+
+.month-selector { display: flex; justify-content: space-between; align-items: center; .navigator { display: flex; align-items: center; gap: 15px; } .month-display { font-size: 1.2rem; font-weight: 600; } }
+.two-column-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.kpi-row { display: flex; justify-content: space-around; text-align: center; div { span { display: block; font-size: 0.9rem; } strong { font-size: 1.2rem; } } }
+.generator-body { text-align: center; .generator-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; div { background-color: #f8fafc; padding: 15px; border-radius: 8px; i { font-size: 1.5rem; color: $accent-color; } span { display: block; font-weight: 600; margin: 10px 0 5px; } small { font-size: 0.8rem; } } } }
+.action-buttons { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; }
+.planning-section { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: center; }
+.saldo-box { background-color: $secondary-bg-color; color: $text-color-light; padding: 20px; border-radius: 8px; text-align: center; span { opacity: 0.8; } strong { display: block; font-size: 2rem; font-weight: bold; } small { opacity: 0.6; } }
+.expense-section { border-top: 1px solid $border-color; margin: 0 25px; padding: 25px 0; .input-group { display: flex; gap: 10px; input { flex-grow: 1; } } .total-expenses { text-align: right; margin-top: 15px; font-weight: 500; } }
+.kpi-row.colored { gap: 25px; .kpi-box { flex: 1; padding: 20px; border-radius: 8px; color: #fff; text-align: center; span { opacity: 0.9; } strong { font-size: 1.8rem; display: block; } &.green { background-color: $status-success-text; } &.red { background-color: $logout-red; } &.blue { background-color: $card-border-color; } } }
+.category-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background-color: $border-color; border: 1px solid $border-color; .category-item { background-color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; } }
+.principles-card { background-color: rgba($card-border-color, 0.1); border-color: rgba($card-border-color, 0.3); ul { padding-left: 20px; line-height: 1.7; } }

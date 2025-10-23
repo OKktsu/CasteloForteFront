@@ -1,0 +1,116 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+.page-container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid $border-color;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+// Estilos para o conteúdo DENTRO dos cards
+.card-header {
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  color: $text-color-dark;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: color.adjust($text-color-dark, $lightness: 30%);
+  margin-top: 4px;
+}
+
+.prompt-editor {
+  width: 98%;
+  min-height: 250px;
+  resize: vertical;
+  background-color: #ffffff;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 15px;
+  color: $text-color-dark;
+  font-family: $main-font;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: $accent-color;
+    box-shadow: 0 0 0 3px rgba($accent-color, 0.2);
+  }
+}
+
+.secondary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  
+  .card {
+    height: 100%;
+  }
+}
+
+.file-input-container {
+  border: 2px dashed $border-color;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .file-name-display {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: color.adjust($text-color-dark, $lightness: 35%);
+  }
+}
+
+.analysis-body {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state {
+  text-align: center;
+  color: color.adjust($text-color-dark, $lightness: 35%);
+  p { margin: 5px 0; }
+}
+
+.card-footer {
+  padding-top: 20px;
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  border-top: none; // O header já tem a linha, removemos do footer
+}
+
+@media (max-width: $breakpoint-md) {
+  .secondary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-footer{
+    margin-top: 45px;
+}

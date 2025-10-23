@@ -1,0 +1,155 @@
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Dashboard de Leads</h1>
+      <p class="page-description">Gerencie e acompanhe os leads que completaram o questionário VIPE ID.</p>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    @for (card of kpiCards; track card.title) {
+      <div class="card kpi-card">
+        <div class="kpi-icon" [ngClass]="'icon-bg-' + card.colorClass">
+          <i [class]="card.icon"></i>
+        </div>
+        <div class="kpi-content">
+          <span class="kpi-title">{{ card.title }}</span>
+          <span class="kpi-value">{{ card.value }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="card data-card">
+    <div class="filter-bar">
+      <div class="search-wrapper">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" class="search-input" placeholder="Buscar por nome, email, telefone ou empresa...">
+      </div>
+      <div class="filters">
+        <select class="filter-dropdown">
+          <option>Todos os Status</option>
+        </select>
+        <select class="filter-dropdown">
+          <option>Todos os Questionários</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="leads-table">
+        <thead>
+          <tr>
+            <th>LEAD</th>
+            <th>CONTATO</th>
+            <th>PERFIL VIPE ID</th>
+            <th>STATUS</th>
+            <th>DATA</th>
+            <th>AÇÕES</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (lead of leads; track lead.id) {
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-avatar">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <span>{{ lead.nome }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="contact-cell">
+                  <span>{{ lead.email }}</span>
+                  <span class="text-light">{{ lead.telefone }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="status-cell">
+                  <span class="badge" [ngClass]="'badge-' + lead.perfilVipeColor">{{ lead.perfilVipe }}</span>
+                  <span class="text-light">{{ lead.perfilVipeStatus }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="status-cell">
+                  <span class="badge" [ngClass]="'badge-' + lead.statusColor">{{ lead.status }}</span>
+                  <span class="text-light">{{ lead.statusDesc }}</span>
+                </div>
+              </td>
+              <td class="text-light">{{ lead.data }}</td>
+              <td>
+                <button class="btn-icon" (click)="abrirModal(lead)">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-controls">
+      <span class="pagination-text">Mostrando 1 a 10 de 53 resultados</span>
+      <div class="pagination-buttons">
+        <button class="btn-pagination">&laquo;</button>
+        <button class="btn-pagination active">1</button>
+        <button class="btn-pagination">2</button>
+        <button class="btn-pagination">3</button>
+        <button class="btn-pagination">4</button>
+        <button class="btn-pagination">5</button>
+        <button class="btn-pagination">&raquo;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (isModalVisible) {
+  <div class="modal-overlay" (click)="fecharModal()">
+    <div class="modal-content card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">Detalhes do Lead</h2>
+        <button class="btn-icon btn-close" (click)="fecharModal()">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="details-section">
+          <h3 class="section-title">Informações Básicas</h3>
+          <div class="info-grid">
+            <div class="info-item"><span>Nome</span><strong>{{ selectedLead.nome }}</strong></div>
+            <div class="info-item"><span>Email</span><strong>{{ selectedLead.email }}</strong></div>
+            <div class="info-item"><span>Telefone</span><strong>{{ selectedLead.telefone }}</strong></div>
+            <div class="info-item"><span>Fonte</span><strong>{{ selectedLead.fonte }}</strong></div>
+          </div>
+        </div>
+        <div class="details-section">
+          <h3 class="section-title">Perfil VIPE ID</h3>
+          <div class="info-grid">
+            <div class="info-item"><span>Perfil Primário</span><strong class="badge badge-green">{{ selectedLead.perfilPrimario }}</strong></div>
+            <div class="info-item"><span>Perfil Secundário</span><strong>{{ selectedLead.perfilSecundario || 'N/A' }}</strong></div>
+            <div class="info-item"><span>Intensidade</span><strong>{{ selectedLead.intensidade }}</strong></div>
+            <div class="info-item"><span>Data de Conclusão</span><strong>{{ selectedLead.dataConclusao }}</strong></div>
+          </div>
+        </div>
+        <div class="details-section">
+          <h3 class="section-title">Scores VIPE ID</h3>
+          <div class="scores-grid">
+            @for (score of selectedLead.scores; track score.nome) {
+              <div class="score-item">
+                <label>{{ score.nome }}</label>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" [style.width.%]="score.valor"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Whatsapp</button>
+        <button class="btn btn-secondary" (click)="fecharModal()">Fechar</button>
+      </div>
+    </div>
+  </div>
+}

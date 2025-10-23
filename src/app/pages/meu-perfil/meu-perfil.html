@@ -1,0 +1,73 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Meu Perfil</h1>
+    <p class="page-description">Gerencie suas informações e visualize suas estatísticas</p>
+  </div>
+
+  <div class="profile-layout">
+    <div class="card profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="profile-name">
+          <h2>{{ user.nomeCompleto }}</h2>
+          <span>{{ user.role }}</span>
+        </div>
+      </div>
+      <div class="profile-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <label><i class="fa-solid fa-user-pen"></i> Nome Completo</label>
+            <span>{{ user.nomeCompleto }}</span>
+          </div>
+          <div class="info-item">
+            <label><i class="fa-solid fa-envelope"></i> E-mail</label>
+            <span>{{ user.email }}</span>
+          </div>
+          <div class="info-item">
+            <label><i class="fa-solid fa-id-card"></i> ID do Usuário</label>
+            <span>{{ user.idUsuario }}</span>
+          </div>
+          <div class="info-item">
+            <label><i class="fa-solid fa-calendar-alt"></i> Data de Criação</label>
+            <span>{{ user.dataCriacao }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-footer">
+        <button class="btn btn-secondary"><i class="fa-solid fa-lock"></i> Trocar Senha</button>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="card">
+        <div class="card-header"><h2 class="card-title">Estatísticas</h2></div>
+        <div class="card-body">
+          <div class="stats-container">
+            @for (stat of stats; track stat.label) {
+              <div class="stat-box" [ngClass]="stat.colorClass">
+                <div class="stat-icon"><i [class]="stat.icon"></i></div>
+                <div class="stat-content">
+                  <span class="stat-label">{{ stat.label }}</span>
+                  <strong class="stat-value">{{ stat.value }}</strong>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header"><h2 class="card-title">Informações do Sistema</h2></div>
+        <div class="card-body">
+          <div class="system-info-list">
+            <div class="info-row"><span>Versão:</span> <strong>{{ systemInfo.versao }}</strong></div>
+            <div class="info-row"><span>Último Login:</span> <strong>{{ systemInfo.ultimoLogin }}</strong></div>
+            <div class="info-row"><span>Status:</span> <span class="status-badge active">{{ systemInfo.status }}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

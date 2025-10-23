@@ -1,0 +1,44 @@
+        .error-container {
+            /* Centraliza o texto dentro do container */
+            text-align: center;
+            /* Adiciona um preenchimento interno */
+            padding: 20px;
+        }
+
+        /* Estilo do título do erro (H1) */
+        .error-title {
+            /* Cor do texto vermelha, para indicar erro */
+            color: #d9534f;
+            /* Tamanho da fonte */
+            font-size: 1.5rem; /* 24px */
+            /* Remove margem superior e define uma margem inferior */
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo da mensagem de descrição (P) */
+        .error-message {
+            /* Cor de texto cinza escuro */
+            color: #6c757d;
+            /* Tamanho da fonte */
+            font-size: 1rem; /* 16px */
+            /* Define a margem inferior para separar do link */
+            margin-bottom: 20px;
+        }
+
+        /* Estilo do link para voltar (A) */
+        .error-link {
+            /* Cor do link azul padrão */
+            color: #007bff;
+            /* Remove o sublinhado padrão */
+            text-decoration: none;
+            /* Tamanho da fonte */
+            font-size: 1rem; /* 16px */
+            /* Adiciona uma transição suave para o efeito hover */
+            transition: text-decoration 0.2s ease-in-out;
+        }
+
+        /* Adiciona o sublinhado quando o mouse passa por cima do link */
+        .error-link:hover {
+            text-decoration: underline;
+        }

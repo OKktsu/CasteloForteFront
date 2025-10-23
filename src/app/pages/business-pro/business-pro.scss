@@ -1,0 +1,51 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS ESPECÍFICOS DA PÁGINA ---
+
+.card-instruction {
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: color.adjust($border-color, $lightness: 5%);
+  border-left: 3px solid $accent-color;
+  border-radius: 4px;
+}
+
+.profile-selectors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  input, select, textarea {
+    border: 1px solid $border-color;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    &:focus { outline-color: $accent-color; }
+  }
+}
+
+.helper-text {
+  font-size: 0.8rem;
+  color: $status-success-text;
+  margin-top: 8px;
+}
+
+// Responsividade
+@media (max-width: $breakpoint-md) {
+  .profile-selectors-grid {
+    grid-template-columns: 1fr;
+  }
+}

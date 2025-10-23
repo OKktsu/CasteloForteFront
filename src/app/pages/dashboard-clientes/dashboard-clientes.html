@@ -1,0 +1,176 @@
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Painel Administrativo</h1>
+      <p class="page-description">Gerencie clientes e consultores</p>
+      <div class="instructions">
+        <span>Como atribuir consultores:</span>
+        <ol>
+          <li>Use o dropdown na coluna "Consultor" para atribuir individualmente.</li>
+          <li>Ou selecione múltiplos clientes e use "Atribuir em Massa".</li>
+          <div class="header-actions">
+            <button class="btn btn-primary"><i class="fa-solid fa-users"></i> Atribuir em Massa (0)</button>
+          </div>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    @for (card of kpiCards; track card.title) {
+      <div class="card kpi-card" [ngClass]="card.colorClass">
+        <span class="kpi-title">{{ card.title }}</span>
+        <span class="kpi-value">{{ card.value }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="card filters-card">
+    <div class="filter-bar">
+      <div class="search-wrapper">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" class="search-input" placeholder="Buscar por nome, email ou telefone...">
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="mostrarSemConsultor">
+        <label for="mostrarSemConsultor"> sem consultor</label>
+      </div>
+      <span class="client-count"><strong>53 de 53 clientes</strong></span>
+    </div>
+    <div class="cliente-alvo-section">
+      <div class="cliente-info">
+        <i class="fa-solid fa-user-check"></i>
+        <span><strong>Cliente-Alvo: Abimael Neto</strong> abimael.oliveira.adv@gmail.com</span>
+        <a href="#" class="limpar-link">Limpar</a>
+      </div>
+      <div class="cliente-actions">
+        <button class="btn btn-outline">Resetar Estado</button>
+        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Novo Cliente</button>
+      </div>
+    </div>
+  </div>
+
+  @for (grupo of gruposDeClientes; track grupo.nome) {
+    <div class="consultor-group">
+      <div class="consultor-group-header">
+        <div class="consultor-name">
+          <h2>{{ grupo.nome }}</h2>
+          <span>{{ grupo.totalClientes }} clientes</span>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table class="clients-table">
+          <thead>
+            <tr>
+              <th class="checkbox-col"><input type="checkbox"></th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+              <th>Assinatura</th>
+              <th>Consultor</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (cliente of grupo.clientes; track cliente.id) {
+              <tr>
+                <td class="checkbox-col"><input type="checkbox" [(ngModel)]="cliente.selected"></td>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.telefone }}</td>
+                <td>
+                  @if (cliente.temAssinatura) {
+                    <span class="status-assinatura active">Assinatura Ativa</span>
+                  } @else {
+                    <span class="status-assinatura inactive">Sem assinatura</span>
+                  }
+                </td>
+                <td>
+                  <select class="consultor-select">
+                    <option disabled selected>{{ cliente.consultor }}</option>
+                    @for (consultor of consultoresDisponiveis; track consultor) {
+                      <option [value]="consultor">{{ consultor }}</option>
+                    }
+                  </select>
+                </td>
+                <td class="actions-col">
+                  <div class="action-buttons">
+                    <button class="btn-link" (click)="abrirModalEdicao(cliente)">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button class="btn-icon btn-icon-danger" (click)="abrirModalExclusao(cliente)">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+
+  @if (isDeleteModalVisible) {
+    <div class="modal-overlay" (click)="fecharModalExclusao()">
+      <div class="modal-content modal-confirm" (click)="$event.stopPropagation()">
+        <div class="modal-body">
+          <div class="modal-icon"> <i class="fa-solid fa-triangle-exclamation"></i> </div>
+          <div class="modal-text">
+            <h2 class="modal-title">Confirmar Exclusão</h2>
+            @if (clienteParaExcluir) {
+              <p>Você tem certeza que deseja excluir o cliente <strong>{{ clienteParaExcluir.nome }}</strong>? Esta ação não pode ser desfeita.</p>
+            }
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="fecharModalExclusao()">Cancelar</button>
+          <button class="btn btn-danger" (click)="confirmarExclusao()">Sim, Excluir</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (isEditModalVisible && clienteParaEditar) {
+    <div class="modal-overlay modal-overlay-lateral " (click)="fecharModalEdicao()">
+      <div class="modal-content modal-side-panel" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2 class="modal-title">Editar Cliente</h2>
+          <button class="btn-icon" (click)="fecharModalEdicao()"> <i class="fa-solid fa-times"></i> </button>
+        </div>
+        <div class="modal-body">
+          <form class="form-container" (ngSubmit)="salvarAlteracoes()">
+            <div class="form-group">
+              <label for="nome">Nome *</label>
+              <input type="text" id="nome" class="form-control" [(ngModel)]="clienteParaEditar.nome" name="nome">
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" class="form-control" [(ngModel)]="clienteParaEditar.email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <input type="text" id="telefone" class="form-control" [(ngModel)]="clienteParaEditar.telefone" name="telefone">
+            </div>
+            <div class="form-group">
+              <label for="consultor">Consultor</label>
+              <select id="consultor" class="form-control" [(ngModel)]="clienteParaEditar.consultor" name="consultor">
+                @for (consultor of consultoresDisponiveis; track consultor) {
+                  <option [value]="consultor">{{ consultor }}</option>
+                }
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="observacoes">Observações</label>
+              <textarea id="observacoes" class="form-control" rows="4" [(ngModel)]="clienteParaEditar.observacoes" name="observacoes" placeholder="Digite observações sobre o cliente..."></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="fecharModalEdicao()">Cancelar</button>
+          <button class="btn btn-primary" (click)="salvarAlteracoes()">Salvar Alterações</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

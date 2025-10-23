@@ -1,0 +1,54 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">VIPE Assessment</h1>
+      <p class="page-subtitle">Módulo: Plano Legado</p>
+    </div>
+  </div>
+
+  <div class="alert-banner">
+    <h3 class="alert-title">Ferramenta Temporariamente Desativada</h3>
+    <p>O VIPE Assessment está temporariamente desativado para ajustes e melhorias. Em breve, estará disponível uma versão ainda mais robusta e integrada à plataforma Castelo Forte.</p>
+    <div class="alert-suggestion">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <div>
+        <strong>Enquanto isso, você pode utilizar:</strong>
+        <ul>
+          <li>Money Scripts - para análise de crenças financeiras</li>
+          <li>VIPE ID - para identificação do perfil comportamental</li>
+          <li>Chave Mestra - para análise de valores e motivadores</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<div class="disabled-container">
+    <div class="card">
+      <div class="card-body">
+        <p class="intro-text">Esta ferramenta permite uma análise comportamental aprofundada baseada em relatórios de assessment (como o CIS Assessment).</p>
+        <p class="intro-text">Cole o conteúdo do seu relatório abaixo para que a IA Castelo Forte possa extrair insights e combiná-los com a metodologia VIPE, incluindo DISC, Teoria de Valores, Motivadores e mais.</p>
+        
+        <div class="form-group">
+          <label for="assessmentContent">Conteúdo do Relatório de Assessment:</label>
+          <textarea id="assessmentContent" rows="10" placeholder="Cole aqui o conteúdo completo do seu relatório de assessment..." [(ngModel)]="conteudoRelatorio"></textarea>
+        </div>
+      </div>
+    </div>
+    
+    <button class="btn btn-disabled btn-full-width" disabled>Ferramenta Temporariamente Desativada</button>
+  
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Análises de IA</h2>
+        <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+      </div>
+      <div class="card-body empty-state">
+        <p><strong>Nenhuma análise encontrada.</strong></p>
+      </div>
+    </div>
+  
+    <div class="page-footer">
+      <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+    </div>
+</div>
+</div>

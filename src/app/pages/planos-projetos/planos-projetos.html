@@ -1,0 +1,177 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Planos e Projetos</h1>
+  </div>
+
+  <div class="info-banner">
+    <p>Grandes decisões financeiras são projetos de expansão do "Castelo Forte". Planeje cada nova "torre" ou "muralha" para que sirva ao propósito do seu senhor.</p>
+    <p class="philosophy-quote"><strong>Filosofia Castelo Forte:</strong> Avaliar os projetos além do financeiro, integrando viabilidade matemática com alinhamento comportamental e de propósito.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header projects-header">
+      <h2 class="card-title">Seus Projetos</h2>
+      <button class="btn btn-primary" (click)="openProjectModal()"><i class="fa-solid fa-plus"></i> Criar Novo Projeto</button>
+    </div>
+    <div class="card-body">
+      @if (projetos.length === 0) {
+        <div class="empty-state">
+          <p>Nenhum projeto cadastrado ainda. Clique em "Criar Novo Projeto" para começar.</p>
+        </div>
+      } @else {
+        }
+    </div>
+  </div>
+
+  <div class="vfp-cards-container">
+    <div class="card info-card">
+      <div class="card-header">
+        <h2 class="card-title">Método VFP (Viabilidade Financeira de Projetos)</h2>
+      </div>
+      <div class="card-body">
+        <h3><i class="fa-solid fa-circle-question"></i> O que é o Método VFP?</h3>
+        <p>É uma abordagem estruturada de sete fases para analisar grandes decisões financeiras (seus "projetos"), incorporando análises quantitativas e qualitativas. Garante que o projeto agregue verdadeira Riqueza de Vida, não apenas retorno financeiro.</p>
+      </div>
+    </div>
+    <div class="card info-card">
+      <div class="card-body">
+        <h3><i class="fa-solid fa-list-check"></i> As 7 Fases do Método VFP (Exemplo: Compra de Franquia por um "Construtor Analítico")</h3>
+        <div class="phases-list">
+          @for (fase of fasesVFP; track fase.titulo) {
+            <div class="phase-item">
+              <h4>{{ fase.titulo }}</h4>
+              <p>{{ fase.descricao }}</p>
+            </div>
+          }
+        </div>
+        <div class="panel-footer"><button class="btn btn-dark ">Gerar Relatório de Projetos</button></div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="analysis-list">
+      <div class="analysis-header">
+        <div class="header-item">Data</div>
+        <div class="header-item">Status</div>
+        <div class="header-item">Ações</div>
+      </div>
+      @for (analise of analises; track analise.id) {
+        <div class="analysis-row">
+          <div class="row-item">{{ analise.data }}</div>
+          <div class="row-item">
+            <span class="status-badge" [ngClass]="{'status-concluido': analise.status === 'Concluído'}">
+              {{ analise.status }}
+            </span>
+          </div>
+          <div class="row-item actions">
+            <button class="btn btn-icon" (click)="openAnalysisModal(analise)">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+            <button class="btn btn-icon btn-icon-danger" (click)="abrirModalExclusao(analise)"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save">
+      <i class="fa-solid fa-save"></i> Salvar
+    </button>
+  </div>
+
+  @if (isProjectModalOpen) {
+    <div class="modal-overlay" (click)="closeProjectModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2 class="modal-title">Criar Novo Projeto</h2>
+          <button class="btn btn-icon" (click)="closeProjectModal()"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group full-width">
+            <label for="projectName">Nome do Projeto (Ex: Viagem)</label>
+            <input type="text" id="projectName" [(ngModel)]="novoProjetoData.nome">
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="projectDate">Data Alvo:</label>
+              <input type="date" id="projectDate" [(ngModel)]="novoProjetoData.dataAlvo">
+            </div>
+            <div class="form-group">
+              <label for="projectValue">Valor Desejado (R$):</label>
+              <div class="input-currency-wrapper">
+                <input type="number" id="projectValue" [(ngModel)]="novoProjetoData.valorDesejado">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="projectBalance">Saldo Atual (R$):</label>
+              <div class="input-currency-wrapper">
+                <input type="number" id="projectBalance" [(ngModel)]="novoProjetoData.saldoAtual">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="projectContribution">Contribuição Mensal (R$):</label>
+              <div class="input-currency-wrapper">
+                <input type="number" id="projectContribution" [(ngModel)]="novoProjetoData.contribuicaoMensal">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeProjectModal()">Cancelar</button>
+          <button class="btn btn-primary" (click)="saveProject()">Salvar Projeto</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (isAnalysisModalOpen && selectedAnalysis) {
+    <div class="modal-overlay" (click)="closeAnalysisModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2 class="modal-title">Detalhes da Análise</h2>
+          <button class="btn btn-icon" (click)="closeAnalysisModal()"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="analysis-details">
+            <h3>{{ selectedAnalysis.titulo }}</h3>
+            <div class="details-meta">
+              <span><strong>Data:</strong> {{ selectedAnalysis.data }}</span>
+              <span><strong>Status:</strong> <span class="status-badge status-concluido">{{ selectedAnalysis.status }}</span></span>
+            </div>
+            <p class="details-content">{{ selectedAnalysis.conteudo }}</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeAnalysisModal()">Fechar</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (isDeleteModalVisible) {
+    <div class="modal-overlay-confirm" (click)="fecharModalExclusao()">
+      <div class="modal-content modal-confirm" (click)="$event.stopPropagation()">
+        <div class="modal-body">
+          <div class="modal-icon"> <i class="fa-solid fa-triangle-exclamation"></i> </div>
+          <div class="modal-text">
+            <h2 class="modal-title">Confirmar Exclusão</h2>
+            @if (analiseParaExcluir) {
+              <p>Você tem certeza que deseja excluir a análise <strong>{{ analiseParaExcluir.titulo }}</strong>? Esta ação não pode ser desfeita.</p>
+            }
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="fecharModalExclusao()">Cancelar</button>
+          <button class="btn btn-danger" (click)="confirmarExclusao()">Sim, Excluir</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

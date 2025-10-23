@@ -1,0 +1,108 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS GERAIS DA PÁGINA (Padrão do Projeto) ---
+.page-container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.page-header {
+  .page-title { font-size: 2rem; color: $text-color-dark; margin: 0; }
+  .breadcrumb { color: $text-color-light; margin: 0.25rem 0 0; font-size: 0.9rem; }
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid $border-color;
+  color: $text-color-dark;
+}
+
+.card-header {
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $border-color;
+  .card-title { font-size: 1.25rem; margin: 0; }
+}
+
+.btn-full-width { width: 100%; }
+.page-footer { display: flex; justify-content: flex-end; }
+.empty-state { text-align: center; color: color.adjust($text-color-dark, $lightness: 40%); padding: 20px; }
+
+// --- ESTILOS DAS ABAS (Padrão do Projeto) ---
+.tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px solid $secondary-bg-color;
+}
+
+.tab-button {
+  border: none; background: none; color: $text-color-light; padding: 10px 15px;
+  cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s ease; opacity: 0.7;
+  &.active { border-bottom-color: $accent-color; color: $accent-color; opacity: 1; font-weight: bold; }
+}
+
+// --- ESTILOS ESPECÍFICOS DO COMPONENTE ---
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  .form-section { padding-right: 30px; border-right: 1px solid $border-color; }
+}
+
+.section-title { font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
+
+.form-group {
+  margin-bottom: 1.5rem;
+  label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+  input, select {
+    width: 90%; padding: 0.75rem;
+    border: 1px solid $border-color; border-radius: 6px;
+    &:focus { outline-color: $accent-color; }
+  }
+}
+
+.kpi-grid { display: flex; flex-direction: column; gap: 15px; }
+.kpi-item {
+  padding: 1.5rem; text-align: center; border-radius: 8px;
+  border: 1px solid $border-color;
+  .kpi-label { display: block; margin-bottom: 0.5rem; }
+  .kpi-value { font-size: 2rem; font-weight: bold; }
+  &.success { background-color: $status-success-bg; color: $status-success-text; border-color: transparent; }
+}
+
+.divider { border: none; border-top: 1px solid $border-color; margin: 2rem 0; }
+
+.actions-list {
+  .checkbox-group {
+    display: flex; align-items: center; margin-bottom: 0.75rem;
+    input { width: auto; margin-right: 0.75rem; transform: scale(1.2); }
+  }
+}
+
+.calculators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 25px;
+  .card-body {
+    display: flex; flex-direction: column; gap: 1rem;
+    .highlight-box {
+      margin-top: auto; padding: 1rem; text-align: center; font-weight: bold;
+      background-color: color.adjust($border-color, $lightness: 5%);
+      border-radius: 6px;
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: $breakpoint-md) {
+  .panel-grid {
+    grid-template-columns: 1fr;
+    .form-section { padding-right: 0; border-right: none; margin-bottom: 2rem; }
+  }
+}

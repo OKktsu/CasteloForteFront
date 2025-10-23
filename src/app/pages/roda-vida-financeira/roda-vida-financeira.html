@@ -1,0 +1,158 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Roda da Vida Financeira</h1>
+      <p class="page-subtitle">Módulo: Método VIPE</p>
+    </div>
+  </div>
+
+  <div class="info-banner">
+    <p>Avalie sua saúde financeira em 8 dimensões chave, de 0 (muito insatisfeito) a 10 (muito satisfeito). Esta é a primeira visão da fundação do seu "Castelo Forte".</p>
+    <p>"A Roda da Vida Financeira com Propósito mapeia o estado atual em oito dimensões [...], criando uma representação visual clara de áreas de força e oportunidade para construir seu Castelo."</p>
+  </div>
+
+  <div class="main-layout">
+    <div class="pillars-column">
+      @for (pilar of pilares; track pilar.numeroPilar) {
+        <div class="card pillar-card">
+          <div class="card-header">
+            <h2 class="card-title">{{ pilar.titulo }} <span class="pillar-number">(Pilar {{ pilar.numeroPilar }})</span></h2>
+          </div>
+          <div class="card-body">
+            <div class="score-section">
+              <label>Pontuação: {{ pilar.pontuacao }}</label>
+              <input type="range" min="0" max="10" [(ngModel)]="pilar.pontuacao">
+            </div>
+            @for (pergunta of pilar.perguntas; track pergunta) {
+              <div class="form-group">
+                <label class="question-label">{{ pergunta }}</label>
+              </div>
+            }
+            <div class="form-group">
+              <label>Suas reflexões sobre este pilar do seu Castelo...</label>
+              <textarea rows="4" [(ngModel)]="pilar.reflexao"></textarea>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="chart-column">
+      <div class="dark-card chart-card">
+        <h3>Seu "Castelo Forte" Financeiro</h3>
+        <div class="radar-chart-container">
+          <svg viewBox="0 0 300 300">
+            <g transform="translate(150,150)">
+              @for (i of [1,2,3,4,5]; track i) {
+                <polygon 
+                  [attr.points]="'0,'+(-20*i)+' '+(14.14*i)+','+(-14.14*i)+' '+(20*i)+',0 '+(14.14*i)+','+(14.14*i)+' 0,'+(20*i)+' '+(-14.14*i)+','+(14.14*i)+' '+(-20*i)+',0 '+(-14.14*i)+','+(-14.14*i)"
+                  fill="none" 
+                  stroke="#2a4365" 
+                  stroke-width="1"/>
+              }
+              @for (i of [0,1,2,3]; track i) {
+                <line x1="0" y1="-100" x2="0" y2="100" [attr.transform]="'rotate(' + i * 45 + ')'" stroke="#2a4365" stroke-width="1"/>
+              }
+              <polygon points="0,-50 35.35,-35.35 50,0 35.35,35.35 0,50 -35.35,35.35 -50,0 -35.35,-35.35" 
+                       fill="rgba(197, 165, 91, 0.5)" 
+                       stroke="#c5a55b" 
+                       stroke-width="2"/>
+              <text y="-110" text-anchor="middle" fill="#c7d2e6" font-size="10">Propósito</text>
+              <text x="110" y="5" text-anchor="start" fill="#c7d2e6" font-size="10">Saúde</text>
+              <text y="120" text-anchor="middle" fill="#c7d2e6" font-size="10">Investimentos</text>
+              <text x="-110" y="5" text-anchor="end" fill="#c7d2e6" font-size="10">Relacionamento</text>
+              <g transform="rotate(45)"><text y="-110" text-anchor="middle" fill="#c7d2e6" font-size="10">Lazer</text></g>
+              <g transform="rotate(135)"><text y="-110" text-anchor="middle" fill="#c7d2e6" font-size="10">Educação</text></g>
+              <g transform="rotate(225)"><text y="-110" text-anchor="middle" fill="#c7d2e6" font-size="10">Ajuda</text></g>
+              <g transform="rotate(315)"><text y="-110" text-anchor="middle" fill="#c7d2e6" font-size="10">Emergência</text></g>
+            </g>
+          </svg>
+        </div>
+        <div class="ivfh-score">
+          <span>IVFH: <strong>5.0</strong></span>
+          <small>(Índice de Vida Financeira Holística - A Estrutura do seu Castelo)</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-footer"><button class="btn btn-primary">Analisar Roda com IA Castelo Forte</button></div>
+
+  <div class="card">
+    <div class="card-header"><h2 class="card-title">Filosofia Castelo Forte: A Roda da Vida Financeira</h2></div>
+    <div class="card-body philosophy-content">
+      <p><strong>O que é o IVFH:</strong> O Índice de Vida Financeira Holística é uma medida que combina satisfação em todas as dimensões da vida financeira, criando uma visão holística do seu "Castelo Forte".</p>
+      <p><strong>Dimensões Interconectadas:</strong> Cada dimensão da roda influencia e é influenciada pelas outras. Fortalecer uma "fundação frágil" pode elevar todo o seu Castelo.</p>
+      <p><strong>Jornada de Crescimento:</strong> A Roda da Vida Financeira não é um teste, mas um ponto de partida para uma jornada de crescimento e fortalecimento contínuo.</p>
+      <p><strong>Próximos Passos:</strong> Use os insights da IA para identificar prioridades e criar um plano de ação personalizado para fortalecer seu Castelo Forte.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="analysis-list">
+      <div class="analysis-header"><div>Data</div><div>Status</div><div>Ações</div></div>
+      @for (analise of analises; track analise.id) {
+        <div class="analysis-row">
+          <div>{{ analise.data }}</div>
+          <div><span class="status-badge status-concluido">{{ analise.status }}</span></div>
+          <div class="actions">
+            <button class="btn btn-icon" (click)="openAnalysisModal(analise)"><i class="fa-solid fa-eye"></i></button>
+            <button class="btn btn-icon btn-icon-danger" (click)="abrirModalExclusao(analise)"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+
+  @if (isAnalysisModalOpen && selectedAnalysis) {
+    <div class="modal-overlay" (click)="closeAnalysisModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2 class="modal-title">Detalhes da Análise</h2>
+          <button class="btn btn-icon" (click)="closeAnalysisModal()"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="analysis-details">
+            <h3>{{ selectedAnalysis.titulo }}</h3>
+            <div class="details-meta">
+              <span><strong>Data:</strong> {{ selectedAnalysis.data }}</span>
+              <span><strong>Status:</strong> <span class="status-badge status-concluido">{{ selectedAnalysis.status }}</span></span>
+            </div>
+            <p class="details-content">{{ selectedAnalysis.conteudo }}</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeAnalysisModal()">Fechar</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (isDeleteModalVisible) {
+    <div class="modal-overlay-confirm" (click)="fecharModalExclusao()">
+      <div class="modal-content modal-confirm" (click)="$event.stopPropagation()">
+        <div class="modal-body">
+          <div class="modal-icon"> <i class="fa-solid fa-triangle-exclamation"></i> </div>
+          <div class="modal-text">
+            <h2 class="modal-title">Confirmar Exclusão</h2>
+            @if (analiseParaExcluir) {
+              <p>Você tem certeza que deseja excluir a análise <strong>{{ analiseParaExcluir.titulo }}</strong>? Esta ação não pode ser desfeita.</p>
+            }
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="fecharModalExclusao()">Cancelar</button>
+          <button class="btn btn-danger" (click)="confirmarExclusao()">Sim, Excluir</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

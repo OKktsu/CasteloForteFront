@@ -1,9 +1,13 @@
 @use '../../../variables' as *; 
 
-$sidebar-width: 240px;
+// --- Variáveis ---
+$sidebar-width: 310px;
 $sidebar-width-collapsed: 80px;
 $top-bar-height: 60px;
-$breakpoint-md: 992px; // Ponto de quebra para responsividade
+$breakpoint-md: 992px;
+$sidebar-transition-duration: 0.35s;
+$sidebar-transition-timing: ease-in-out;
+$sidebar-transition: $sidebar-transition-duration $sidebar-transition-timing;
 
 // --- Overlay do Menu ---
 .sidebar-overlay {
@@ -24,7 +28,7 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
     }
 }
 
-
+// --- Estrutura Principal do Menu ---
 .sidebar {
     width: $sidebar-width;
     background-color: $main-bg-color;
@@ -34,7 +38,7 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-    transition: width 0.3s ease, transform 0.3s ease;
+    transition: width $sidebar-transition, transform $sidebar-transition;
     position: fixed;
     left: 0;
     top: 0;
@@ -65,11 +69,10 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
         height: $top-bar-height;
         box-sizing: border-box;
 
-        span {
-            font-size: 1.3rem;
-            font-weight: bold;
-            white-space: nowrap;
-            transition: opacity 0.2s ease, width 0.3s ease;
+        .logo {
+            height: 45px;
+            transition: opacity 0.3s ease-in-out, max-width $sidebar-transition;
+            max-width: 200px;
         }
     }
     
@@ -114,6 +117,7 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
         font-size: 0.85rem;
         transition: background-color 0.3s, color 0.3s;
         white-space: nowrap;
+        overflow: hidden;
 
         i {
             margin-right: 15px;
@@ -159,11 +163,10 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
 
         .sidebar-header {
             justify-content: center;
-            span {
-                width: 0;
+            .logo {
                 opacity: 0;
                 overflow: hidden;
-                visibility: hidden;
+                max-width: 0;
             }
         }
 
@@ -171,9 +174,11 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
             transform: rotate(180deg);
         }
 
-        .nav-title, .sidebar-footer {
+        .search-bar, .nav-title, .sidebar-footer {
             opacity: 0;
             visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            display: none;
         }
 
         .nav-text {
@@ -181,6 +186,7 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
             visibility: hidden;
             width: 0;
             overflow: hidden;
+            transition: opacity 0.2s ease-in-out;
         }
         
         .nav-link {
@@ -205,7 +211,7 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
     display: flex;
     flex-direction: column;
     margin-left: $sidebar-width;
-    transition: margin-left 0.3s ease;
+    transition: margin-left $sidebar-transition;
 }
 
 .sidebar.sidebar-collapsed ~ .page-wrapper {
@@ -252,6 +258,63 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
     }
 }
 
+// --- Menu de Configurações Mobile ---
+.mobile-settings {
+    display: none; // Oculto por padrão em telas grandes
+    position: relative;
+}
+
+.settings-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #333;
+    padding: 5px;
+}
+
+.settings-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    z-index: 1002;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+
+    .settings-item {
+        padding: 10px 15px;
+        color: #4a5568;
+        font-size: 0.9rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: #f7fafc;
+        }
+
+        &.danger {
+            color: $logout-red;
+            &:hover {
+                background-color: #fff5f5;
+            }
+        }
+    }
+
+    .settings-separator {
+        height: 1px;
+        background-color: #e2e8f0;
+        margin: 5px 0;
+    }
+}
+
+// --- Botão de Menu Mobile ---
 .mobile-menu-toggle {
     display: none; // Escondido por padrão
     background: none;
@@ -261,7 +324,6 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
     color: #333;
     padding: 0;
 }
-
 
 // --- Botões ---
 .btn {
@@ -298,6 +360,11 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
     }
 }
 
+// --- Ações do Desktop ---
+.desktop-actions {
+    display: flex;
+    gap: 8px;
+}
 
 // --- Seletor de Usuário Customizado ---
 .custom-select-wrapper {
@@ -334,7 +401,7 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
 .select-dropdown {
     position: absolute;
     top: calc(100% + 5px);
-    right: 0; // Alinha à direita para não sair da tela
+    right: 0;
     left: auto;
     width: 300px;
     background-color: $main-bg-color;
@@ -439,6 +506,45 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
     100% { transform: rotate(360deg); }
 }
 
+// --- Barra de Pesquisa ---
+.search-bar {
+    position: relative;
+    padding: 10px 20px;
+
+    .search-icon {
+        position: absolute;
+        left: 35px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6a7f9d;
+        font-size: 0.9rem;
+    }
+
+    .search-input {
+        width: 100%;
+        box-sizing: border-box;
+        height: 42px;
+        padding: 0 15px 0 40px;
+        border-radius: 6px;
+        border: 1px solid $secondary-bg-color;
+        background-color: $main-bg-color;
+        color: $text-color-light;
+        font-family: $main-font;
+        font-size: 0.85rem;
+        transition: border-color 0.3s, background-color 0.3s;
+
+        &::placeholder {
+            color: #6a7f9d;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $accent-color;
+            background-color: $secondary-bg-color;
+        }
+    }
+}
+
 // --- AJUSTES DE RESPONSIVIDADE ---
 @media (max-width: $breakpoint-md) {
     .sidebar {
@@ -495,6 +601,14 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
             font-size: 1.1rem;
         }
     }
+    
+    // Lógica de responsividade para os botões da top-bar
+    .desktop-actions {
+        display: none; // Esconde os botões originais
+    }
+    .mobile-settings {
+        display: block; // Mostra o menu de engrenagem
+    }
 
     .btn {
         padding: 6px 10px; // Diminui o padding dos botões
@@ -504,4 +618,31 @@ $breakpoint-md: 992px; // Ponto de quebra para responsividade
     .custom-select-wrapper {
         width: 150px; // Diminui a largura do seletor
     }
+}
+
+.no-user-selected {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100dvh - 60px); // Subtrai a altura da top-bar
+    color: #4a5568;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 20px;
+}
+
+.spinner {
+    border: 5px solid #e2e8f0;
+    border-top: 5px solid #6a7f9d;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

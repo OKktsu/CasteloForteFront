@@ -1,0 +1,81 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Painel de Controle do Castelo</h1>
+  </div>
+
+  <div class="info-banner">
+    <p>Este é o seu "Painel de Controle", uma visão consolidada da saúde do seu Castelo Forte. Ele reúne os principais indicadores das outras ferramentas para fornecer um diagnóstico em tempo real. Use-o para identificar rapidamente pontos de força e áreas que necessitam de atenção.</p>
+  </div>
+
+  <div class="card main-panel-card">
+    <div class="kpi-grid">
+      <div class="kpi-column">
+        <h2 class="column-title">Saúde Financeira</h2>
+        @for (kpi of saudeFinanceiraKpis; track kpi.title) {
+          <div class="kpi-item">
+            <div class="kpi-icon"><i [class]="kpi.icon"></i></div>
+            <div class="kpi-content">
+              <span class="kpi-title">{{ kpi.title }}</span>
+              <span class="kpi-value" [ngClass]="'status-' + kpi.status">{{ kpi.value }}</span>
+              <span class="kpi-description">{{ kpi.description }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="kpi-column">
+        <h2 class="column-title">Perfil Comportamental</h2>
+        @for (kpi of perfilComportamentalKpis; track kpi.title) {
+          <div class="kpi-item">
+            <div class="kpi-icon"><i [class]="kpi.icon"></i></div>
+            <div class="kpi-content">
+              <span class="kpi-title">{{ kpi.title }}</span>
+              <span class="kpi-value" [ngClass]="'status-' + kpi.status">{{ kpi.value }}</span>
+              <span class="kpi-description">{{ kpi.description }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="kpi-column">
+        <h2 class="column-title">Dívidas e Projetos</h2>
+        @for (kpi of dividasProjetosKpis; track kpi.title) {
+          <div class="kpi-item">
+            <div class="kpi-icon"><i [class]="kpi.icon"></i></div>
+            <div class="kpi-content">
+              <span class="kpi-title">{{ kpi.title }}</span>
+              <span class="kpi-value" [ngClass]="'status-' + kpi.status">{{ kpi.value }}</span>
+              <span class="kpi-description">{{ kpi.description }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    
+    <div class="panel-footer">
+      <button class="btn btn-primary">Gerar Relatório do Painel</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body analysis-body">
+      @if (analises.length === 0) {
+        <div class="empty-state">
+          <p><strong>Nenhuma análise encontrada.</strong></p>
+          <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+        </div>
+      } @else {
+        }
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save">
+      <i class="fa-solid fa-save"></i> Salvar
+    </button>
+  </div>
+</div>

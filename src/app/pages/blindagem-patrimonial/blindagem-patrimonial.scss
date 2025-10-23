@@ -1,0 +1,167 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// Estilos da Página e do Banner (reutilizados)
+.page-container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.page-header {
+  margin-bottom: 5px;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin: 0;
+  color: $text-color-dark;
+}
+
+.info-banner {
+  background-color: #fff;
+  border-left: 5px solid $accent-color;
+  padding: 15px 20px;
+  border-radius: 8px;
+}
+
+// Estilo Base do Card
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid $border-color;
+  color: $text-color-dark;
+}
+
+// Seções dentro do card principal
+.card-section {
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid $border-color;
+  margin: 25px 0;
+}
+
+// Grid de dados do contexto
+.context-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 30px;
+  font-size: 0.9rem;
+  
+  p { margin: 5px 0; }
+}
+
+.context-note {
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: color.adjust($text-color-dark, $lightness: 30%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// Campos de Formulário
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  textarea {
+    width: 98%;
+    resize: vertical;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: $main-font;
+    font-size: 1rem;
+    color: $text-color-dark;
+    
+    &:focus {
+      outline: none;
+      border-color: $accent-color;
+      box-shadow: 0 0 0 3px rgba($accent-color, 0.2);
+    }
+  }
+}
+
+.card-footer {
+  margin-top: 25px;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+// Lista de Análises
+.analysis-list {
+  font-size: 0.9rem;
+}
+
+.analysis-header, .analysis-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid $border-color;
+  align-items: center;
+}
+
+.analysis-header {
+  font-weight: bold;
+  color: color.adjust($text-color-dark, $lightness: 30%);
+}
+
+.analysis-row:last-child {
+  border-bottom: none;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  
+  &.status-concluido {
+    background-color: $status-success-bg;
+    color: $status-success-text;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+// Responsividade
+@media (max-width: $breakpoint-md) {
+  .context-grid {
+    grid-template-columns: 1fr;
+  }
+  .analysis-header {
+    display: none; // Oculta o cabeçalho em telas menores
+  }
+  .analysis-row {
+    grid-template-columns: 1fr; // Empilha as colunas
+    gap: 8px;
+  }
+}

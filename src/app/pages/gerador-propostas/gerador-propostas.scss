@@ -1,0 +1,151 @@
+@use '../../../variables' as *;
+
+.page-container {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.page-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.plans-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.plan-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    /* --- NOVOS ESTILOS PARA DESTAQUE --- */
+    background-color: #ffffff;      // Fundo branco para o card contrastar com a página
+    border: 1px solid $border-color; // Borda sutil para definir os limites
+    border-radius: 12px;             // Cantos mais suaves e modernos
+    padding: 25px;                   // Um respiro interno para o conteúdo
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra suave para dar profundidade
+    transition: all 0.3s ease-in-out;         // Transição para o efeito de hover
+
+    /* Efeito de hover para chamar mais atenção */
+    &:hover {
+        transform: translateY(-5px); // Eleva o card sutilmente
+        box-shadow: 0 8px 20px rgba(42, 67, 101, 0.15); // Sombra mais pronunciada
+        border-color: $accent-color;  // Borda com a cor de destaque
+    }
+}
+
+.plan-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 20px;
+}
+
+.plan-icon {
+    font-size: 2.5rem;
+    color: $accent-color;
+    background-color: $main-bg-color;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    flex-shrink: 0; // Impede que o ícone seja esmagado
+}
+
+.plan-header-content {
+    flex-grow: 1;
+}
+
+.plan-title {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+    color: $text-color-dark;
+}
+
+.plan-subtitle {
+    margin: 0;
+    font-weight: 300;
+}
+
+.plan-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $accent-color;
+    white-space: nowrap;
+}
+
+.plan-card-body {
+    .section-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: $text-color-dark;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .section-description {
+      font-size: 0.9rem;
+    }
+    
+    ul, ol {
+        padding-left: 20px;
+        margin: 0;
+        line-height: 1.6;
+    }
+}
+
+.section-full-width {
+  margin-bottom: 25px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  border-top: 1px solid $border-color;
+  padding-top: 25px;
+}
+
+.plan-card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid $border-color;
+}
+
+.ia-analysis-card {
+    .card-subtitle {
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: $text-color-light;
+    }
+    .card-body {
+        text-align: center;
+        color: $text-color-light;
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+    .plan-card-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .plan-price {
+        margin-top: 10px;
+    }
+
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+}

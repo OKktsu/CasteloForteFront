@@ -1,0 +1,81 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Gerador de Propostas</h1>
+      <nav class="breadcrumb">Módulo: Gestão de Clientes</nav>
+    </div>
+  </div>
+  <p class="info-banner">
+    Explore os planos de consultoria Castelo Forte, cada um desenhado para uma etapa da sua jornada rumo à Riqueza de Vida.
+  </p>
+
+  <div class="page-actions">
+    <button class="btn btn-secondary">Visualizar Comparativo de Todos os Planos</button>
+  </div>
+
+  <div class="plans-list">
+    @for (plano of planos; track plano.id) {
+      <div class="card plan-card">
+        <div class="plan-card-header">
+          <div class="plan-icon">
+            <i [class]="plano.icone"></i>
+          </div>
+          <div class="plan-header-content">
+            <h2 class="plan-title">{{ plano.titulo }}</h2>
+            <p class="plan-subtitle">{{ plano.subtitulo }}</p>
+          </div>
+          <div class="plan-price">
+            {{ plano.preco }}
+          </div>
+        </div>
+        <div class="plan-card-body">
+          <div class="section-full-width">
+            <h3 class="section-title">Público-Alvo:</h3>
+            <p>{{ plano.publicoAlvo }}</p>
+          </div>
+          
+          <div class="details-grid">
+            <div class="grid-column">
+              <h3 class="section-title">Ferramentas e Jornada de Aplicação:</h3>
+              <p class="section-description">Este plano inclui o acesso às seguintes ferramentas e metodologias, aplicadas em uma jornada de transformação:</p>
+              <ol>
+                @for (ferramenta of plano.ferramentas; track $index) {
+                  <li>{{ ferramenta }}</li>
+                }
+              </ol>
+            </div>
+
+            <div class="grid-column">
+              <h3 class="section-title">Destaques do Plano:</h3>
+              <ul>
+                @for (destaque of plano.destaques; track $index) {
+                  <li>{{ destaque }}</li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="plan-card-footer">
+          <button class="btn btn-primary">Visualizar Proposta Detalhada →</button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="card ia-analysis-card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+      <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save">
+      <i class="fa-solid fa-save"></i> Salvar
+    </button>
+  </div>
+</div>

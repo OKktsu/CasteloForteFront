@@ -1,0 +1,62 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Gestão de Contexto IA</h1>
+  </div>
+  
+  <p class="info-banner">
+    Gerencie os arquivos de contexto (PDF/CSV) e o prompt mestre que guiam a IA Castelo Forte.
+  </p>
+
+  <div class="card prompt-card">
+    <div class="card-header">
+      <h2 class="card-title">Editor de Prompt Mestre</h2>
+    </div>
+    <div class="card-body">
+      <textarea 
+        class="prompt-editor" 
+        placeholder="Digite ou cole aqui o prompt mestre que servirá como base para a IA..."
+        [(ngModel)]="promptMestre">
+      </textarea>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary">Salvar Prompt</button>
+    </div>
+  </div>
+
+  <div class="secondary-grid">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Arquivos de Contexto</h2>
+      </div>
+      <div class="card-body">
+        <div class="file-input-container">
+          <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept=".pdf,.csv">
+          <span class="file-name-display">{{ nomeArquivoSelecionado || 'Nenhum ficheiro selecionado' }}</span>
+          <button class="btn btn-primary" (click)="fileInput.click()">Adicionar Arquivo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Análises de IA</h2>
+        <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+      </div>
+      <div class="card-body analysis-body">
+        @if (analises.length === 0) {
+          <div class="empty-state">
+            <p><strong>Nenhuma análise encontrada.</strong></p>
+            <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+          </div>
+        } @else {
+          }
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save">
+      <i class="fa-solid fa-save"></i> Salvar
+    </button>
+  </div>
+</div>

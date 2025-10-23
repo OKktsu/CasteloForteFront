@@ -1,0 +1,384 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- Layout Geral e Espaçamento Consistente ---
+.page-container {
+    background-color: #f8f9fa;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.page-header {
+    .instructions {
+        font-size: 0.9rem;
+        color: $text-color-light;
+        margin-top: 15px;
+        ol { padding-left: 20px; margin: 5px 0 0; }
+    }
+}
+
+.header-actions{
+    margin-top: 8px;
+    display: flex;
+    justify-content: end;
+}
+
+.page-header {
+    // --- CORREÇÃO NA SEÇÃO DE INSTRUÇÕES ---
+    .instructions {
+        background-color: #ffffff; // Fundo branco para agrupar o conteúdo
+        border-left: 3px solid $accent-color; // Destaque lateral com a cor primária
+        border-radius: 4px;
+        padding: 15px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: $text-color-light;
+        border: 1px solid $border-color;
+        border-left-width: 3px;
+
+        // Título "Como atribuir consultores:"
+        span {
+            display: block;
+            font-weight: 600;
+            color: $text-color-dark;
+            margin-bottom: 10px;
+        }
+
+        // Lista ordenada
+        ol {
+            margin: 0;
+            padding-left: 20px; // Apenas o padding necessário para os números
+            display: flex;
+            flex-direction: column;
+            gap: 8px; // Espaçamento entre os itens da lista
+        }
+        
+        li {
+            line-height: 1.5;
+        }
+    }
+}
+
+
+// --- Cards de KPI Coloridos ---
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+}
+
+.kpi-card {
+    padding: 20px;
+    border-radius: 8px;
+    color: $text-color-dark;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    &.bg-blue { background-color: rgba($card-border-color, 0.1); }
+    &.bg-orange { background-color: rgba($accent-color, 0.1); }
+    &.bg-green { background-color: rgba($status-success-text, 0.1); }
+    &.bg-purple { background-color: rgba(115, 103, 240, 0.1); }
+    &.bg-light-green { background-color: rgba(40, 199, 111, 0.1); }
+}
+
+.kpi-title { font-size: 0.9rem; font-weight: 500; }
+.kpi-value { font-size: 2.25rem; font-weight: 700; }
+
+// --- Card de Filtros e Ações ---
+.filters-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-bar, .cliente-alvo-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-wrapper {
+    position: relative;
+    flex-grow: 1;
+    .fa-search {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        color: $text-color-light;
+    }
+}
+
+.search-input {
+    width: 90%;
+    padding: 12px 15px 12px 40px;
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    background-color: #fff;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+        border-color: $accent-color;
+        outline: none;
+    }
+}
+
+.form-check { display: flex; align-items: center; gap: 8px; }
+.client-count { font-size: 0.9rem; color: $text-color-light; }
+.cliente-info { display: flex; align-items: center; gap: 10px; .fa-user-check { color: $status-success-text; } }
+.limpar-link { font-size: 0.9rem; }
+.cliente-actions { display: flex; gap: 10px; }
+
+
+// --- Grupos de Clientes e Tabelas ---
+.consultor-group {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.consultor-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $border-color;
+    h2 { font-size: 1.5rem; margin: 0; color: $text-color-dark; }
+    span { color: $text-color-light; }
+}
+
+.table-wrapper { width: 100%; overflow-x: auto; }
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    th, td { padding: 15px; text-align: left; vertical-align: middle; border-bottom: 1px solid $border-color; }
+    th { font-size: 0.75rem; color: $text-color-light; font-weight: 600; text-transform: uppercase; }
+    tbody tr:last-child td { border-bottom: none; }
+    .checkbox-col { width: 40px; }
+    .actions-col { width: 200px; text-align: right; }
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.status-assinatura { font-size: 0.9rem; &.inactive { color: $text-color-light; } &.active { color: $status-success-text; font-weight: 500; } }
+.consultor-select {
+    width: 100%;
+    max-width: 200px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid $border-color;
+    background-color: #fff;
+    &:focus { border-color: $accent-color; outline: none; }
+}
+.details-link {
+    color: $card-border-color;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    &:hover { text-decoration: underline; }
+}
+.btn-icon {
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+    &.btn-icon-danger {
+        color: $logout-red ;
+        &:hover {
+           cursor: pointer;
+        }
+    }
+}
+
+// --- Estilos do Modal de Exclusão ---
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(black, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content.modal-confirm {
+    width: 100%;
+    max-width: 450px;
+    padding: 16px !important;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    .modal-body {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .modal-icon {
+        font-size: 1.5rem;
+        color: $logout-red;
+        background-color: rgba($logout-red, 0.1);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .modal-text {
+        p { margin: 5px 0 0; color: $text-color-light; line-height: 1.5; }
+    }
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 20px;
+        border-top: 1px solid $border-color;
+    }
+}
+
+// --- Animações ---
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+// --- Layout Geral e Espaçamento Consistente ---
+.page-container {
+    background-color: #f8f9fa;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.page-header {
+    .instructions {
+        font-size: 0.9rem;
+        color: $text-color-light;
+        margin-top: 15px;
+        ol { padding-left: 20px; margin: 5px 0 0; }
+    }
+}
+
+// --- Cards de KPI Coloridos ---
+.kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 25px; }
+.kpi-card {
+    padding: 20px;
+    border-radius: 8px;
+    color: $text-color-dark;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    &.bg-blue { background-color: rgba($card-border-color, 0.1); }
+    &.bg-orange { background-color: rgba($accent-color, 0.1); }
+    &.bg-green { background-color: rgba($status-success-text, 0.1); }
+    &.bg-purple { background-color: rgba(115, 103, 240, 0.1); }
+    &.bg-light-green { background-color: rgba(40, 199, 111, 0.1); }
+}
+.kpi-title { font-size: 0.9rem; font-weight: 500; }
+.kpi-value { font-size: 2.25rem; font-weight: 700; }
+
+// --- Card de Filtros e Ações ---
+.filters-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.filter-bar, .cliente-alvo-section { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.search-wrapper { position: relative; flex-grow: 1; .fa-search { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: $text-color-light; } }
+.search-input { width: 90%; padding: 12px 15px 12px 40px; border-radius: 8px; border: 1px solid $border-color; background-color: #fff; transition: border-color 0.2s ease; &:focus { border-color: $accent-color; outline: none; } }
+.form-check { display: flex; align-items: center; gap: 8px; }
+.client-count { font-size: 0.9rem; color: $text-color-light; }
+.cliente-info { display: flex; align-items: center; gap: 10px; .fa-user-check { color: $status-success-text; } }
+.limpar-link { font-size: 0.9rem; }
+.cliente-actions { display: flex; gap: 10px; }
+
+// --- Grupos de Clientes e Tabelas ---
+.consultor-group { background-color: #fff; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); }
+.consultor-group-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid $border-color; h2 { font-size: 1.5rem; margin: 0; color: $text-color-dark; } span { color: $text-color-light; } }
+.table-wrapper { width: 100%; overflow-x: auto; }
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    th, td { padding: 15px; text-align: left; vertical-align: middle; border-bottom: 1px solid $border-color; }
+    th { font-size: 0.75rem; color: $text-color-light; font-weight: 600; text-transform: uppercase; }
+    tbody tr:last-child td { border-bottom: none; }
+    .checkbox-col { width: 40px; }
+    .actions-col { width: 220px; text-align: right; }
+}
+.action-buttons { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+.status-assinatura { font-size: 0.9rem; &.inactive { color: $text-color-light; } &.active { color: $status-success-text; font-weight: 500; } }
+.consultor-select { width: 100%; max-width: 200px; padding: 8px 10px; border-radius: 6px; border: 1px solid $border-color; background-color: #fff; &:focus { border-color: $accent-color; outline: none; } }
+.btn-link { background: none; border: none; cursor: pointer; color: $card-border-color; text-decoration: none; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; &:hover { text-decoration: underline; } }
+
+// --- Estilos de Modal ---
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(black, 0.5); display: flex; z-index: 1000; animation: fadeIn 0.3s ease; }
+
+// Modal de Exclusão (Centralizado)
+.modal-overlay { justify-content: center; align-items: center; }
+.modal-content.modal-confirm { width: 100%; max-width: 450px; padding: 30px; gap: 20px; .modal-body { display: flex; align-items: flex-start; gap: 20px; } .modal-icon { font-size: 1.5rem; color: $logout-red; background-color: rgba($logout-red, 0.1); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } .modal-text { p { margin: 5px 0 0; color: $text-color-light; line-height: 1.5; } } .modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding-top: 20px; border-top: 1px solid $border-color; } }
+.btn-danger { background-color: $logout-red; color: #fff; border: none; &:hover { background-color: color.adjust($logout-red, $lightness: -10%); } }
+
+// Modal de Edição (Painel Lateral)
+.modal-overlay-lateral { justify-content: flex-end; }
+.modal-content.modal-side-panel {
+    width: 100%;
+    max-width: 500px;
+    height: 97%;
+    border-radius: 0;
+    animation: slideInFromRight 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 16px;
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid $border-color; flex-shrink: 0; }
+.modal-title { font-weight: 700; }
+.modal-body { flex-grow: 1; overflow-y: auto; padding: 8px 5px 25px 0; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding-top: 20px; border-top: 1px solid $border-color; flex-shrink: 0; }
+
+// Estilos de Formulário para o Modal de Edição
+.form-container { display: flex; flex-direction: column; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 8px;
+    label { font-weight: 600; font-size: 0.9rem; color: $text-color-dark; }
+}
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    background-color: #fff;
+    transition: border-color 0.2s ease;
+    &:focus { border-color: $accent-color; outline: none; }
+}
+textarea.form-control { resize: vertical; }

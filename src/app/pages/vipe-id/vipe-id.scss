@@ -1,0 +1,91 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS ESPECÍFICOS DA PÁGINA ---
+
+.status-banner {
+  background-color: $status-success-bg; color: $status-success-text; padding: 15px 20px;
+  border-radius: 8px; border: 1px solid color.adjust($status-success-text, $alpha: -0.7);
+  display: flex; justify-content: space-between; align-items: center; font-weight: 500;
+}
+.status-tag { background-color: rgba($status-success-text, 0.1); padding: 5px 10px; border-radius: 12px; font-size: 0.8rem; }
+.setup-card { display: flex; justify-content: space-between; align-items: center; }
+.setup-actions, .radio-group { display: flex; align-items: center; gap: 15px; }
+.radio-item { display: flex; align-items: center; gap: 8px; input[type="radio"] { accent-color: $accent-color; } }
+.form-group { margin-bottom: 20px; label { display: block; margin-bottom: 8px; font-weight: 500; } input { border: 1px solid $border-color; padding: 10px; border-radius: 8px; width: 100%; } }
+.question-section { margin-top: 30px; }
+.section-title { font-size: 1.1rem; font-weight: bold; padding-bottom: 10px; border-bottom: 1px solid $border-color; margin-bottom: 20px; }
+.question-item { padding: 20px 0; border-bottom: 1px solid $border-color; &:last-child { border-bottom: none; } }
+.question-text { font-weight: 500; line-height: 1.5; margin-bottom: 20px; }
+
+// --- ESTILOS DO SLIDER (CORRIGIDO) ---
+.slider-container {
+  position: relative;
+  padding-top: 10px;
+}
+
+.likert-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 8px; background: $border-color;
+  outline: none; border-radius: 4px; 
+}
+.likert-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 20px; height: 20px; background: $accent-color;
+  cursor: pointer; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+.likert-slider::-moz-range-thumb {
+  width: 20px; height: 20px; background: $accent-color;
+  cursor: pointer; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.slider-value-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px; // Alinha as extremidades com o slider
+  margin-top: 15px;
+}
+
+.value-label {
+  position: relative;
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 0.85rem;
+  color: color.adjust($text-color-dark, $lightness: 40%);
+  transition: all 0.2s ease;
+
+  // Garante que o primeiro e último fiquem nas pontas
+  &:first-child { text-align: left; }
+  &:last-child { text-align: right; }
+
+  &.active {
+    font-weight: bold;
+    color: $accent-color;
+    transform: scale(1.1);
+  }
+}
+
+// --- ESTILOS DO RESUMO ---
+.summary-name { font-size: 1.1rem; font-weight: bold; margin-bottom: 20px; }
+.summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background-color: $border-color; border: 1px solid $border-color; }
+.summary-item {
+  background-color: #ffffff; padding: 15px; display: flex; justify-content: space-between; align-items: center;
+  &.highlight { grid-column: span 3; font-weight: bold; background-color: color.adjust($border-color, $lightness: 5%); }
+}
+
+// --- RESPONSIVIDADE ---
+@media (max-width: $breakpoint-md) {
+  .setup-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+  .slider-value-labels { 
+    font-size: 0.7rem;
+    padding: 0;
+    .value-label {
+      text-align: center !important; // Força o centro em telas pequenas para evitar quebra
+    }
+  }
+  .summary-grid { grid-template-columns: 1fr; }
+  .summary-item.highlight { grid-column: auto; }
+}

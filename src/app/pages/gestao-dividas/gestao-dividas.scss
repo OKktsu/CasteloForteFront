@@ -1,0 +1,161 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS DA PÁGINA ---
+.page-container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.page-header { margin-bottom: 5px; }
+.page-title { font-size: 2rem; color: $text-color-dark; margin: 0; }
+
+.info-banner {
+  background-color: #ffffff;
+  border: 1px solid $border-color;
+  border-left: 5px solid $accent-color;
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: $text-color-dark;
+
+  .philosophy-quote {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid $border-color;
+  }
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid $border-color;
+  color: $text-color-dark;
+}
+
+.card-header {
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $border-color;
+}
+
+.card-title { font-size: 1.25rem; margin: 0; }
+.card-subtitle { font-size: 0.9rem; font-weight: 300; color: color.adjust($text-color-dark, $lightness: 30%); margin-top: 4px; }
+
+
+// --- ESTILOS ESPECÍFICOS DA TELA ---
+
+// Formulário de Dívidas
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  &.span-3 { grid-column: span 3; }
+
+  label {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  input, select {
+    border: 1px solid $border-color;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 90%;
+    &:focus { outline-color: $accent-color; }
+  }
+}
+
+.form-group-button {
+  .btn-dark {
+    width: 100%;
+  }
+}
+
+// Card de Recomendações
+.recommendations-card {
+  background-color: color.adjust($accent-color, $alpha: -0.95);
+  border-color: color.adjust($accent-color, $alpha: -0.8);
+}
+
+.recommendation-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+// ATUALIZADO
+.suggested-strategy {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.tag {
+  display: inline-block;
+  background-color: $accent-color;
+  color: $text-color-dark;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.motivation-section ul {
+  padding-left: 20px;
+  line-height: 1.7;
+}
+
+// Cards Escuros de Filosofia
+.dark-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.dark-card {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+
+  &.span-2 { grid-column: span 2; }
+  
+  h3 { margin-top: 0; color: $accent-color; }
+  p, li { font-size: 0.95rem; line-height: 1.6; opacity: 0.9; }
+  ul { padding-left: 20px; }
+}
+
+.btn-dark {
+  background-color: $secondary-bg-color;
+  color: $text-color-light;
+  &:hover { background-color: color.adjust($secondary-bg-color, $lightness: 10%); }
+}
+.btn-full-width { width: 100%; }
+
+.empty-state-container { text-align: center; }
+
+// Responsividade
+@media (max-width: $breakpoint-md) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    .form-group, .form-group-button {
+      grid-column: auto;
+    }
+  }
+  .recommendation-content, .dark-cards-grid {
+    grid-template-columns: 1fr;
+    .dark-card.span-2 { grid-column: auto; }
+  }
+}

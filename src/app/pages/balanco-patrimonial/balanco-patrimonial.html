@@ -1,0 +1,113 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Balanço Patrimonial</h1>
+  </div>
+
+  <div class="info-banner">
+    <p>Entenda a fotografia atual do seu patrimônio e fluxo de caixa. Mapeie seus ativos e passivos para construir o caminho para a liberdade financeira, aplicando os princípios de Kiyosaki e da filosofia Castelo Forte.</p>
+    <p class="philosophy-quote"><strong>Filosofia Castelo Forte:</strong> "Um ativo coloca dinheiro no seu bolso; um passivo tira dinheiro do seu bolso. O Balanço Patrimonial é a ferramenta para distinguir os 'soldados' que lutam por você dos 'invasores' que drenam seus recursos."</p>
+  </div>
+
+  <div class="kpi-container">
+    @for (kpi of kpis; track kpi.title) {
+      <div class="kpi-card" [ngClass]="kpi.styleClass">
+        <span class="kpi-title">{{ kpi.title }}</span>
+        <span class="kpi-value">{{ kpi.value }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="card">
+    <div class="balance-grid">
+      <div class="balance-section">
+        <div class="section-header">
+          <h2 class="section-title">Ativos (A)</h2>
+          <button class="btn btn-primary btn-add" (click)="openModal('Ativo')"><i class="fa-solid fa-plus"></i> Adicionar</button>
+        </div>
+        <div class="section-body">
+          @if (ativos.length === 0) { <p class="empty-state">Nenhum item adicionado</p> }
+        </div>
+      </div>
+      <div class="balance-section">
+        <div class="section-header">
+          <h2 class="section-title">Passivos (L)</h2>
+          <button class="btn btn-primary btn-add" (click)="openModal('Passivo')"><i class="fa-solid fa-plus"></i> Adicionar</button>
+        </div>
+        <div class="section-body">
+          @if (passivos.length === 0) { <p class="empty-state">Nenhum item adicionado</p> }
+        </div>
+      </div>
+      <div class="balance-section">
+        <div class="section-header">
+          <h2 class="section-title">Bens de Uso (B)</h2>
+          <button class="btn btn-primary btn-add" (click)="openModal('Bem de Uso')"><i class="fa-solid fa-plus"></i> Adicionar</button>
+        </div>
+        <div class="section-body">
+          @if (bensDeUso.length === 0) { <p class="empty-state">Nenhum item adicionado</p> }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title text-center">Filosofia Castelo Forte para seu Balanço</h2>
+    <div class="philosophy-grid">
+      <div class="philosophy-column">
+        <h3><i class="fa-solid fa-person-military-pointing"></i> Construindo seu Exército de Ativos</h3>
+        <p>A liberdade financeira é alcançada quando a renda gerada por seus ativos (seu "exército") é maior que suas despesas de vida. O foco deve ser adquirir ou construir mais ativos que gerem renda passiva.</p>
+        <p><strong>Reflexão:</strong> Qual o próximo ativo que você pode adquirir para aumentar seu fluxo de caixa mensal?</p>
+      </div>
+      <div class="philosophy-column">
+        <h3><i class="fa-solid fa-house-user"></i> Entendendo o Verdadeiro Papel dos Bens de Uso</h3>
+        <p>Sua casa, seu carro e outros bens de uso pessoal são importantes para sua qualidade de vida, mas no balanço, eles não geram renda e frequentemente têm custos associados. Eles compõem seu patrimônio, mas não seu exército financeiro.</p>
+        <p><strong>Reflexão:</strong> Os custos de manutenção dos seus bens de uso estão alinhados com seus objetivos de longo prazo ou estão impedindo você de investir mais?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state-container">
+      @if (analises.length === 0) {
+        <p><strong>Nenhuma análise encontrada.</strong></p>
+        <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+      }
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save">
+      <i class="fa-solid fa-save"></i> Salvar
+    </button>
+  </div>
+
+   @if (isModalOpen) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2 class="modal-title">{{ modalTitle }}</h2>
+          <button class="btn btn-icon" (click)="closeModal()">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="itemName">Nome do Item</label>
+            <input type="text" id="itemName" placeholder="Ex: Ações, Financiamento Imob." [(ngModel)]="formData.nome">
+          </div>
+          <div class="form-group">
+            <label for="itemValue">Valor (R$)</label>
+            <input type="number" id="itemValue" placeholder="1500.00" [(ngModel)]="formData.valor">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+          <button class="btn btn-primary" (click)="saveData()">Salvar</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

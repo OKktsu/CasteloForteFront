@@ -1,0 +1,83 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Energia Vital</h1>
+      <p class="page-subtitle">Módulo: Plano Legado</p>
+    </div>
+  </div>
+
+  <p class="info-banner">
+    Sua energia é o recurso mais valioso para construir e manter seu "Castelo Forte". Avalie os 4 pilares da sua energia vital e entenda a conexão profunda entre seu bem-estar e sua prosperidade.
+  </p>
+
+  <div class="main-layout">
+    <div class="pillars-column">
+      <h2 class="column-title">Pilares da Energia Vital</h2>
+      @for (pilar of pilares; track pilar.titulo) {
+        <div class="card pillar-card">
+          <div class="card-body">
+            <h3>{{ pilar.titulo }}</h3>
+            <p class="pillar-description">{{ pilar.descricao }}</p>
+            <div class="score-section">
+              <label>Seu nível de energia nesta área (0-10): <strong>{{ pilar.nivel }}</strong></label>
+              <input type="range" min="0" max="10" [(ngModel)]="pilar.nivel">
+            </div>
+            <div class="form-group">
+              <label>Como você se sente sobre este pilar?</label>
+              <textarea rows="3" [(ngModel)]="pilar.sentimento"></textarea>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="calculator-column">
+      <div class="card calculator-card">
+        <div class="card-header">
+          <h2 class="card-title">O Custo Real do Seu Tempo</h2>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Salário Mensal (R$)</label>
+            <input type="number" [(ngModel)]="custoTempoData.salarioMensal">
+          </div>
+          <div class="form-group">
+            <label>Horas de Trabalho/Semana</label>
+            <input type="number" [(ngModel)]="custoTempoData.horasSemana">
+          </div>
+          <div class="form-group">
+            <label>Gasto para Análise (R$)</label>
+            <input type="number" [(ngModel)]="custoTempoData.gastoAnalise">
+          </div>
+          <hr class="divider">
+          <div class="results-section">
+            <div class="result-item">
+              <span>Valor da Sua Hora de Trabalho:</span>
+              <strong class="result-value">R$ 28,85</strong>
+            </div>
+            <div class="result-item">
+              <span>Custo do Gasto de R$ 100,00 em Horas de Vida:</span>
+              <strong class="result-value">3.5 horas</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary btn-full-width">Analisar com IA Castelo Forte</button>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+</div>

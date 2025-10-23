@@ -1,0 +1,92 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">O Código da Família</h1>
+      <p class="page-subtitle">Módulo: Plano Legado</p>
+    </div>
+  </div>
+  
+  <p class="info-banner">
+    "Um código familiar bem definido é como uma constituição para suas finanças. Ele garante que todos os membros da família sigam os mesmos princípios e valores."
+  </p>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="context-box">
+        <h4>Dados do Contexto (Automático):</h4>
+        <div class="context-content">
+          <span><strong>Perfil VIPE ID:</strong> Disponível</span>
+          <span><strong>Money Scripts:</strong> N/A</span>
+        </div>
+        <p class="context-note">Estes dados são coletados automaticamente das outras ferramentas do APP Castelo Forte. Certifique-se de que elas estão atualizadas.</p>
+      </div>
+
+      <div class="family-code-form">
+        <div class="form-group">
+          <label for="valores">Valores Familiares Fundamentais:</label>
+          <textarea id="valores" rows="3" placeholder="Ex: Honestidade, Transparência, Responsabilidade, Educação Financeira, Solidariedade" [(ngModel)]="formData.valores"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="objetivos">Objetivos Financeiros da Família:</label>
+          <textarea id="objetivos" rows="3" placeholder="Ex: Independência financeira, Educação dos filhos, Aposentadoria confortável, Compra da casa própria" [(ngModel)]="formData.objetivos"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="missao">Missão da Família:</label>
+          <textarea id="missao" rows="3" placeholder="Ex: Criar um ambiente de amor, segurança e crescimento para todos os membros da família" [(ngModel)]="formData.missao"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="visao">Visão da Família:</label>
+          <textarea id="visao" rows="3" placeholder="Ex: Ser uma família unida, financeiramente independente e que contribui positivamente para a sociedade" [(ngModel)]="formData.visao"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="principios">Princípios Familiares:</label>
+          <textarea id="principios" rows="3" placeholder="Ex: Sempre falar a verdade sobre dinheiro, tomar decisões em conjunto, poupar antes de gastar" [(ngModel)]="formData.principios"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="regras">Regras Familiares:</label>
+          <textarea id="regras" rows="3" placeholder="Ex: Reunião financeira mensal, limite de gastos sem consulta, poupar 20% da renda" [(ngModel)]="formData.regras"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rituais">Rituais Familiares:</label>
+          <textarea id="rituais" rows="3" placeholder="Ex: Jantar em família semanal, celebração de conquistas financeiras, planejamento anual" [(ngModel)]="formData.rituais"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="protocolo">Protocolo de Comunicação:</label>
+          <textarea id="protocolo" rows="3" placeholder="Ex: Conversas abertas sobre dinheiro, respeito às opiniões, busca de consenso" [(ngModel)]="formData.protocoloComunicacao"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="decisao">Processo de Tomada de Decisão:</label>
+          <textarea id="decisao" rows="3" placeholder="Ex: Discussão em grupo, análise de prós e contras, voto quando necessário" [(ngModel)]="formData.processoDecisao"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="conflitos">Resolução de Conflitos:</label>
+          <textarea id="conflitos" rows="3" placeholder="Ex: Pausa para reflexão, mediação, foco no problema e não na pessoa" [(ngModel)]="formData.resolucaoConflitos"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="educacao">Educação Financeira:</label>
+          <textarea id="educacao" rows="3" placeholder="Ex: Leitura mensal sobre finanças, cursos para crianças, discussão de casos reais" [(ngModel)]="formData.educacaoFinanceira"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="legado">Planejamento de Legado:</label>
+          <textarea id="legado" rows="3" placeholder="Ex: Testamento, seguro de vida, educação dos netos, doações para causas" [(ngModel)]="formData.planejamentoLegado"></textarea>
+          <div class="panel-footer"><button class="btn btn-primary">Analisar com IA Castelo Forte</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+</div>

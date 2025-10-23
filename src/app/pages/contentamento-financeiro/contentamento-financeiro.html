@@ -1,9 +1,11 @@
 <div class="page-container">
     <div class="page-header">
-        <h1 class="page-title">Contentamento Financiado</h1>
-        <nav class="breadcrumb">
-            Módulos > Método VIPE
-        </nav>
+        <div class="header-content">
+            <h1 class="page-title">Contentamento Financiado</h1>
+            <nav class="breadcrumb">
+                Módulo: Método VIPE
+            </nav>
+        </div>
     </div>
 
     <div class="card">
@@ -33,7 +35,7 @@
             </form>
         </div>
         <div class="card-footer">
-            <button class="btn btn-main-action">Avaliar com a Castelo Forte</button>
+            <button class="btn btn-primary">Avaliar com a Castelo Forte</button>
             <button class="btn btn-outline btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
         </div>
     </div>
@@ -56,17 +58,63 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>01/10/2025, 14:26</td>
-                            <td><span class="status-badge status-concluida">Concluída</span></td>
-                            <td class="actions">
-                                <button class="btn-icon" aria-label="Visualizar"><i class="fa-solid fa-eye"></i></button>
-                                <button class="btn-icon" aria-label="Excluir"><i class="fa-solid fa-trash"></i></button>
-                            </td>
-                        </tr>
+                        @for (analise of analises; track analise.id) {
+                            <tr>
+                                <td>{{ analise.data }}</td>
+                                <td><span class="status-badge status-concluida">{{ analise.status }}</span></td>
+                                <td class="actions">
+                                    <button class="btn-icon" aria-label="Visualizar" (click)="openAnalysisModal(analise)"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="btn-icon btn-icon-danger" aria-label="Excluir" (click)="abrirModalExclusao(analise)"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    @if (isAnalysisModalOpen && selectedAnalysis) {
+        <div class="modal-overlay" (click)="closeAnalysisModal()">
+          <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+              <h2 class="modal-title">Detalhes da Análise</h2>
+              <button class="btn-icon" (click)="closeAnalysisModal()"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+              <div class="analysis-details">
+                <h3>{{ selectedAnalysis.titulo }}</h3>
+                <div class="details-meta">
+                  <span><strong>Data:</strong> {{ selectedAnalysis.data }}</span>
+                  <span><strong>Status:</strong> <span class="status-badge status-concluida">{{ selectedAnalysis.status }}</span></span>
+                </div>
+                <p class="details-content">{{ selectedAnalysis.conteudo }}</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" (click)="closeAnalysisModal()">Fechar</button>
+            </div>
+          </div>
+        </div>
+    }
+    
+    @if (isDeleteModalVisible) {
+        <div class="modal-overlay-confirm" (click)="fecharModalExclusao()">
+            <div class="modal-content modal-confirm" (click)="$event.stopPropagation()">
+            <div class="modal-body">
+                <div class="modal-icon"> <i class="fa-solid fa-triangle-exclamation"></i> </div>
+                <div class="modal-text">
+                <h2 class="modal-title">Confirmar Exclusão</h2>
+                @if (analiseParaExcluir) {
+                    <p>Você tem certeza que deseja excluir a análise <strong>{{ analiseParaExcluir.titulo }}</strong>? Esta ação não pode ser desfeita.</p>
+                }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" (click)="fecharModalExclusao()">Cancelar</button>
+                <button class="btn btn-danger" (click)="confirmarExclusao()">Sim, Excluir</button>
+            </div>
+            </div>
+        </div>
+    }
 </div>

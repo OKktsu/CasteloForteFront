@@ -1,0 +1,102 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Blindagem Patrimonial (Seguros)</h1>
+  </div>
+
+  <div class="info-banner">
+    <p>"As muralhas mais altas dão início e as fundações estiveram desprotegidas. A Blindagem Patrimonial é a arte de garantir a perenidade do seu Castelo."</p>
+  </div>
+
+  <div class="card">
+    <div class="card-section">
+      <h2 class="section-title">Dados do Contexto (Automático):</h2>
+      <div class="context-grid">
+        <div class="context-column">
+          <p><strong>Perfil VIPE ID:</strong> Nulo</p>
+          <p><strong>Orçamento Mensal:</strong> Dados não disponíveis no contexto.</p>
+          <p><strong>Saldo Base Zero Plan:</strong> Dados não disponíveis no contexto.</p>
+          <p><strong>Patrimônio Líquido:</strong> R$ 1,00</p>
+        </div>
+        <div class="context-column">
+          <p><strong>Money Scripts:</strong> Nulo</p>
+          <p><strong>Previsão Mensal Plan:</strong> Dados não disponíveis no contexto.</p>
+          <p><strong>Total Dívidas:</strong> R$ 0,00</p>
+          <p><strong>Fluxo Caixa L. Mensal:</strong> R$ 12,00</p>
+        </div>
+      </div>
+      <p class="context-note">
+        <i class="fa-solid fa-circle-info"></i>
+        Leia com atenção automaticamente dos outros ferramentos do APP Castelo Forte. Certifique-se de que eles estão atualizados.
+      </p>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="card-section">
+      <div class="form-fields">
+        <div class="form-group">
+          <label for="profissao">Profissão/Ocupação Principal:</label>
+          <textarea id="profissao" rows="2" [(ngModel)]="dadosBlindagem.profissao"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="fontesRenda">Fontes de Renda Adicionais (se houver):</label>
+          <textarea id="fontesRenda" rows="2" [(ngModel)]="dadosBlindagem.fontesRenda"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="dependentes">Dependentes Financeiros:</label>
+          <textarea id="dependentes" rows="2" [(ngModel)]="dadosBlindagem.dependentes"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="objetivos">Objetivos de Longo Prazo que Requerem Proteção:</label>
+          <textarea id="objetivos" rows="2" [(ngModel)]="dadosBlindagem.objetivos"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="preocupacoes">Preocupações Específicas sobre Riscos:</label>
+          <textarea id="preocupacoes" rows="2" [(ngModel)]="dadosBlindagem.preocupacoes"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="segurosAtuais">Seguros Atuais (Tipo e Cobertura Resumida):</label>
+          <textarea id="segurosAtuais" rows="2" [(ngModel)]="dadosBlindagem.segurosAtuais"></textarea>
+        </div>
+      </div>
+    </div>
+    
+    <div class="panel-footer">
+      <button class="btn btn-primary">Analisar com IA Castelo Forte</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="analysis-list">
+      <div class="analysis-header">
+        <div class="header-item">Data</div>
+        <div class="header-item">Status</div>
+        <div class="header-item">Ações</div>
+      </div>
+      @for (analise of analises; track analise.id) {
+        <div class="analysis-row">
+          <div class="row-item">{{ analise.data }}</div>
+          <div class="row-item">
+            <span class="status-badge" [ngClass]="{'status-concluido': analise.status === 'Concluído'}">
+              {{ analise.status }}
+            </span>
+          </div>
+          <div class="row-item actions">
+            <button class="btn btn-icon"><i class="fa-solid fa-eye"></i></button>
+            <button class="btn btn-icon btn-danger"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save">
+      <i class="fa-solid fa-save"></i> Salvar
+    </button>
+  </div>
+</div>

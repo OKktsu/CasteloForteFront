@@ -1,0 +1,59 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS GERAIS DA PÁGINA (Padrão do Projeto) ---
+
+
+// --- ESTILOS ESPECÍFICOS DA PÁGINA ---
+
+.context-box {
+  background-color: rgba($card-border-color, 0.1);
+  border: 1px solid rgba($card-border-color, 0.3);
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+
+  h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.context-content {
+  display: flex;
+  gap: 30px;
+  font-size: 0.9rem;
+}
+
+.context-note {
+  margin-top: 15px;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  color: color.adjust($text-color-dark, $lightness: 30%);
+}
+
+.family-code-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  textarea {
+    width: 98%;
+    border: 1px solid $border-color;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    &:focus { outline-color: $accent-color; }
+  }
+}

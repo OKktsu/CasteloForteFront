@@ -1,0 +1,65 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Business PRO</h1>
+      <p class="page-subtitle">Módulo: Plano Legado</p>
+    </div>
+  </div>
+
+  <p class="info-banner">
+    Analise a dinâmica financeira e comportamental de uma dupla (sócios, casal, etc.) para otimizar a colaboração e tomada de decisões.
+  </p>
+
+  <div class="card">
+    <div class="card-body">
+      <p class="card-instruction">
+        Selecione o Perfil VIPE ID de cada pessoa e adicione notas sobre a interação observada para uma análise personalizada pela IA Castelo Forte.
+      </p>
+
+      <div class="profile-selectors-grid">
+        <div class="form-group">
+          <label for="perfil1">Perfil VIPE ID - Pessoa 1:</label>
+          <select id="perfil1" [(ngModel)]="formData.perfilPessoa1">
+            <option value="Carregado do Contexto">Carregado do Contexto</option>
+            </select>
+          <small class="helper-text">VIPE ID da Pessoa 1 carregado automaticamente.</small>
+        </div>
+        <div class="form-group">
+          <label for="perfil2">Perfil VIPE ID - Pessoa 2:</label>
+          <select id="perfil2" [(ngModel)]="formData.perfilPessoa2">
+            <option value="" disabled>Selecione o Perfil</option>
+            @for (option of perfisOptions; track option) {
+              <option [value]="option">{{ option }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="consultorNotes">Notas do Consultor sobre a Dinâmica da Dupla:</label>
+        <textarea id="consultorNotes" 
+                  rows="6" 
+                  placeholder="Descreva observações sobre a comunicação, processo de decisão, pontos de conflito ou sinergia, etc.&#10;&#10;Ex: Pessoa 1 tende a dominar a conversa, Pessoa 2 parece hesitante em expressar opiniões contrárias. Ambos demonstram foco em segurança..."
+                  [(ngModel)]="formData.notasConsultor"></textarea>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary">Analisar com IA Castelo Forte</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+      <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+</div>

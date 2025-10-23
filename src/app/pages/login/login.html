@@ -1,0 +1,43 @@
+<div class="login-container">
+    <div class="login-box">
+
+        <!-- Cabeçalho -->
+        <header class="login-header">
+           <img src="assets/logoCasteloForte.png" alt="Logo Castelo Forte" class="login-logo">
+            <p class="subtitle">
+                Acesse sua fortaleza digital.
+            </p>
+        </header>
+
+        <!-- Formulário -->
+        <div action="" method="POST" class="login-form">
+            <div class="form-group">
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="E-mail" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Senha" class="form-input">
+            </div>
+
+            <div class="form-options">
+                <div class="remember-me">
+                    <input id="remember-me" name="remember-me" type="checkbox" class="form-checkbox">
+                    <label for="remember-me">Lembrar de mim</label>
+                </div>
+                <a href="#" class="form-link">Esqueceu a senha?</a>
+            </div>
+
+            <div class="form-group">
+                <button class="submit-button" [routerLink]="['/geometria-pessoal']">
+                    Entrar
+                </button>
+            </div>
+        </div>
+
+        <p class="signup-link">
+            Ainda não é membro?
+            <a href="#" class="form-link">Crie sua conta</a>.
+        </p>
+
+    </div>
+</div>

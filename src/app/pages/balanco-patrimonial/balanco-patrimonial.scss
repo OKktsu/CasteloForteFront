@@ -1,0 +1,268 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS ORIGINAIS DA PÁGINA ---
+
+.page-container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.page-header {
+  margin-bottom: 5px;
+}
+
+.page-title {
+  font-size: 2rem;
+  color: $text-color-dark;
+  margin: 0;
+}
+
+.info-banner {
+  background-color: #ffffff;
+  border: 1px solid $border-color;
+  border-left: 5px solid $accent-color;
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: $text-color-dark;
+
+  .philosophy-quote {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid $border-color;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+}
+
+.kpi-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.kpi-card {
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  
+  .kpi-title {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+
+  &.kpi-default {
+    background-color: #ffffff;
+    border: 1px solid $border-color;
+    color: $text-color-dark;
+  }
+  &.kpi-red {
+    background-color: rgba($logout-red, 0.1);
+    color: $logout-red;
+  }
+  &.kpi-green {
+    background-color: $status-success-bg;
+    color: $status-success-text;
+  }
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid $border-color;
+  color: $text-color-dark;
+}
+
+.balance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.balance-section {
+  background-color: color.adjust($border-color, $lightness: 5%);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.section-body .empty-state {
+  text-align: center;
+  color: color.adjust($text-color-dark, $lightness: 40%);
+  font-size: 0.9rem;
+  padding: 20px 0;
+}
+
+.card-title.text-center {
+  text-align: center;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid $border-color;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: $accent-color;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: color.adjust($text-color-dark, $lightness: 20%);
+  }
+}
+
+.empty-state-container {
+  text-align: center;
+  padding: 20px;
+  color: color.adjust($text-color-dark, $lightness: 40%);
+}
+
+// --- ESTILOS DO MODAL INTEGRADO (ADICIONADOS AO FINAL) ---
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 500px; // Ajustado para um tamanho bom
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  animation: slideInFromRight 0.4s ease;
+  padding: 25px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid $border-color;
+  flex-shrink: 0;
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: $text-color-dark;
+}
+
+.modal-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 25px 5px 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid $border-color;
+  flex-shrink: 0;
+}
+
+// Estilos do formulário dentro do modal branco
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: $text-color-dark;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  input {
+    background-color: color.adjust($border-color, $lightness: 5%);
+    border: 1px solid $border-color;
+    color: $text-color-dark;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $accent-color;
+      box-shadow: 0 0 0 3px rgba($accent-color, 0.2);
+    }
+  }
+}
+
+// Animações para o novo modal
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+
+// --- RESPONSIVIDADE ---
+@media (max-width: $breakpoint-md) {
+  .kpi-container, .balance-grid, .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    max-width: 90%;
+  }
+}
+
+// --- RESPONSIVIDADE (COMBINADA) ---
+@media (max-width: $breakpoint-md) {
+  .kpi-container, .balance-grid, .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .side-panel-container {
+    width: 90%;
+  }
+}

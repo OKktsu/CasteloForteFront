@@ -1,0 +1,179 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Método VFP (Sala de Guerra)</h1>
+      <p class="page-subtitle">Módulo: Plano Estandarte</p>
+    </div>
+  </div>
+  <p class="info-banner">
+    Utilize a Supercalculadora VFP para análises aprofundadas de cada "obra" no seu "Castelo Forte". Calcule indicadores e obtenha uma análise qualitativa com a IA, considerando Viabilidade Holística e Risco Comportamental.
+  </p>
+
+  <nav class="tabs-nav">
+    @for (tab of tabs; track tab) {
+      <button class="tab-button" 
+              (click)="selectTab(tab)"
+              [class.active]="tab === activeTab">
+        {{ tab }}
+      </button>
+    }
+  </nav>
+
+  <div class="tab-content">
+    <div class="card">
+      <div [ngSwitch]="activeTab">
+        
+        <div *ngSwitchCase="'Sala de Guerra'">
+          <div class="card-header"><h2 class="card-title">Projetos na Mesa para Decisão</h2></div>
+          <div class="card-body">
+            <div class="form-grid-sala-guerra">
+              <div class="form-group span-2"><label>Descrição do Projeto/Decisão</label><input type="text" [(ngModel)]="salaDeGuerraData.descricao"></div>
+              <div class="form-group"><label>Tipo de Análise</label><select [(ngModel)]="salaDeGuerraData.tipoAnalise"><option>Projeto de Investimento</option></select></div>
+            </div>
+          </div>
+          <button class="btn btn-secondary"> Adicionar à Mesa</button>
+        </div>
+
+        <div *ngSwitchCase="'Financiamentos'">
+           <div class="card-header"><h2 class="card-title">Análise de Financiamentos</h2></div>
+           <div class="card-body">
+            <div class="form-grid-financiamento">
+                <div class="form-group"><label>Valor do Financiamento (R$)</label><input type="number" [(ngModel)]="financiamentoData.valor"></div>
+                <div class="form-group"><label>Taxa de Juros Anual (%)</label><input type="number" [(ngModel)]="financiamentoData.taxaJurosAnual"></div>
+                <div class="form-group"><label>Prazo (meses)</label><input type="number" [(ngModel)]="financiamentoData.prazoMeses"></div>
+                <div class="form-group"><label>Pagamento Extra Mensal (R$)</label><input type="number" [(ngModel)]="financiamentoData.pagamentoExtra"></div>
+                <div class="form-group span-4"><label>Descrição da Análise</label><textarea rows="3" [(ngModel)]="financiamentoData.descricao"></textarea></div>
+            </div>
+            <div class="action-bar"><button class="btn btn-secondary">Calcular Financiamento</button></div>
+            <div class="result-grid">
+              <div class="result-box"><div class="result-header"><span>Total Pago (SAC): R$ 720.697,47 <small>(Juros: R$ 420.697,48)</small></span></div><div class="amortization-table">@for(item of amortizacaoSac; track $index){<div class="table-row"><span>{{item.parcela | number:'1.2-2'}}</span><span>{{item.juros | number:'1.2-2'}}</span></div>}</div></div>
+              <div class="result-box"><div class="result-header"><span>Total Pago (Price): R$ 900.131,60 <small>(Juros: R$ 600.131,59)</small></span></div><div class="amortization-table"></div></div>
+            </div>
+          </div>
+        </div>
+        
+        <div *ngSwitchCase="'Aquisição de Bens'">
+           <div class="card-header"><h2 class="card-title">Análise de Aquisição de Bens</h2></div>
+           <div class="card-body">
+              <div class="form-grid-aquisicao">
+                <div class="form-group span-2"><label>Descrição do Bem</label><textarea rows="3" [(ngModel)]="aquisicaoBensData.descricao"></textarea></div>
+                <div class="form-group"><label>Valor do Bem (R$)</label><input type="number" [(ngModel)]="aquisicaoBensData.valor"></div>
+                <div class="form-group"><label>Entrada (R$)</label><input type="number" [(ngModel)]="aquisicaoBensData.entrada"></div>
+                <div class="form-group"><label>Taxa de Juros Anual (%)</label><input type="number" [(ngModel)]="aquisicaoBensData.taxaJurosAnual"></div>
+                <div class="form-group"><label>Prazo (meses)</label><input type="number" [(ngModel)]="aquisicaoBensData.prazoMeses"></div>
+                <div class="form-group"><label>Valor de Revenda (R$)</label><input type="number" [(ngModel)]="aquisicaoBensData.valorRevenda"></div>
+                <div class="form-group"><label>Custos de Manutenção Anual (R$)</label><input type="number" [(ngModel)]="aquisicaoBensData.custosManutencaoAnual"></div>
+              </div>
+              <div class="action-bar"><button class="btn btn-secondary">Calcular Análise de Aquisição</button></div>
+           </div>
+        </div>
+
+        <div *ngSwitchCase="'Projetos (VPL/TIR)'">
+          <div class="card-header"><h2 class="card-title">Análise de Viabilidade de Projetos (VPL/TIR)</h2></div>
+          <div class="card-body">
+            <div class="form-group"><label>Descrição do Projeto</label><textarea [(ngModel)]="projetosVplTirData.descricao"></textarea></div>
+            <div class="vpl-grid">
+                <div class="vpl-scenario"><h3>Base</h3><div class="form-group"><label>Invest. Inicial (R$)</label><input type="number" [(ngModel)]="projetosVplTirData.baseInvest"></div><div class="form-group"><label>Fluxos de Caixa (separados por vírgula)</label><input type="text" [(ngModel)]="projetosVplTirData.baseFluxos"></div></div>
+                <div class="vpl-scenario"><h3>Otimista</h3><div class="form-group"><label>Invest. Inicial (R$)</label><input type="number" [(ngModel)]="projetosVplTirData.otimistaInvest"></div><div class="form-group"><label>Fluxos de Caixa (separados por vírgula)</label><input type="text" [(ngModel)]="projetosVplTirData.otimistaFluxos"></div></div>
+                <div class="vpl-scenario"><h3>Pessimista</h3><div class="form-group"><label>Invest. Inicial (R$)</label><input type="number" [(ngModel)]="projetosVplTirData.pessimistaInvest"></div><div class="form-group"><label>Fluxos de Caixa (separados por vírgula)</label><input type="text" [(ngModel)]="projetosVplTirData.pessimistaFluxos"></div></div>
+            </div>
+            <div class="form-group"><label>Taxa de Desconto Anual (%)</label><input type="number" [(ngModel)]="projetosVplTirData.taxaDesconto"></div>
+            <div class="action-bar"><button class="btn btn-secondary">Calcular VPL/TIR</button></div>
+            <div class="result-bar-container">
+              <div class="result-bar"><span>Base</span><span>R$ 14.803,26</span></div>
+              <div class="result-bar"><span>Otimista</span><span>R$ 17.009,12</span></div>
+              <div class="result-bar"><span>Pessimista</span><span>R$ 10.023,97</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'Valuation'">
+          <div class="card-header"><h2 class="card-title">Valuation de Empresa/Projeto</h2></div>
+          <div class="card-body">
+            <div class="form-grid-valuation">
+                <div class="form-group span-2"><label>Nome da Empresa/Projeto</label><input type="text" [(ngModel)]="valuationData.nome"></div>
+                <div class="form-group"><label>Receita Anual (R$)</label><input type="number" [(ngModel)]="valuationData.receitaAnual"></div>
+                <div class="form-group"><label>Margem EBITDA (%)</label><input type="number" [(ngModel)]="valuationData.margemEbitda"></div>
+                <div class="form-group"><label>Taxa de Crescimento (%)</label><input type="number" [(ngModel)]="valuationData.taxaCrescimento"></div>
+                <div class="form-group"><label>Taxa de Desconto (%)</label><input type="number" [(ngModel)]="valuationData.taxaDesconto"></div>
+                <div class="form-group"><label>Dívida Líquida (R$)</label><input type="number" [(ngModel)]="valuationData.dividaLiquida"></div>
+                <div class="form-group"><label>Múltiplo EV/EBITDA</label><input type="number" [(ngModel)]="valuationData.multiploEbitda"></div>
+            </div>
+            <div class="action-bar"><button class="btn btn-secondary">Calcular Valuation</button></div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'Aposentadoria'">
+          <div class="card-header"><h2 class="card-title">Planejamento de Aposentadoria</h2></div>
+          <div class="card-body">
+            <div class="form-grid-aposentadoria">
+                <div class="form-group"><label>Idade Atual</label><input type="number" [(ngModel)]="aposentadoriaData.idadeAtual"></div>
+                <div class="form-group"><label>Idade de Aposentadoria</label><input type="number" [(ngModel)]="aposentadoriaData.idadeAposentadoria"></div>
+                <div class="form-group span-2"><label>Renda Mensal Desejada (R$)</label><input type="number" [(ngModel)]="aposentadoriaData.rendaMensalDesejada"></div>
+                <div class="form-group span-2"><label>Patrimônio Atual (R$)</label><input type="number" [(ngModel)]="aposentadoriaData.patrimonioAtual"></div>
+                <div class="form-group"><label>Contribuição Mensal (R$)</label><input type="number" [(ngModel)]="aposentadoriaData.contribuicaoMensal"></div>
+                <div class="form-group"><label>Taxa de Retorno Anual (%)</label><input type="number" [(ngModel)]="aposentadoriaData.taxaRetornoAnual"></div>
+                <div class="form-group"><label>Inflação Anual (%)</label><input type="number" [(ngModel)]="aposentadoriaData.inflacaoAnual"></div>
+            </div>
+            <div class="action-bar"><button class="btn btn-secondary">Calcular Planejamento de Aposentadoria</button></div>
+            <div class="result-aposentadoria">
+                <div><span>Patrimônio Necessário:</span><strong>R$ 0,00</strong></div>
+                <div><span>Patrimônio Projetado:</span><strong>R$ 0,00</strong></div>
+                <div><span>Déficit/Superávit:</span><strong class="negative">R$ 0,00</strong></div>
+                <div><span>Contribuição Necessária:</span><strong>R$ 0,00</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'Carreira/Educação'">
+          <div class="card-header"><h2 class="card-title">Análise de Decisão de Carreira</h2></div>
+          <div class="card-body">
+            <div class="form-grid-carreira">
+                <div class="form-group"><label>Cargo Atual</label><input type="text" [(ngModel)]="carreiraData.cargoAtual"></div>
+                <div class="form-group"><label>Salário Atual (R$)</label><input type="number" [(ngModel)]="carreiraData.salarioAtual"></div>
+                <div class="form-group"><label>Nova Oportunidade</label><input type="text" [(ngModel)]="carreiraData.novaOportunidade"></div>
+                <div class="form-group"><label>Novo Salário (R$)</label><input type="number" [(ngModel)]="carreiraData.novoSalario"></div>
+                <div class="form-group"><label>Custo de Transição (R$)</label><input type="number" [(ngModel)]="carreiraData.custoTransicao"></div>
+                <div class="form-group"><label>Tempo de Adaptação (meses)</label><input type="number" [(ngModel)]="carreiraData.tempoAdaptacao"></div>
+                <div class="form-group"><label>Crescimento Anual (%)</label><input type="number" [(ngModel)]="carreiraData.crescimentoAnual"></div>
+            </div>
+            <div class="action-bar"><button class="btn btn-secondary">Calcular Análise de Carreira</button></div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'Impacto Social'">
+          <div class="card-header"><h2 class="card-title">Análise de Impacto Social</h2></div>
+          <div class="card-body">
+            <div class="form-grid-social">
+                <div class="form-group span-2"><label>Nome do Projeto Social</label><input type="text" [(ngModel)]="impactoSocialData.nome"></div>
+                <div class="form-group"><label>Investimento Inicial (R$)</label><input type="number" [(ngModel)]="impactoSocialData.investimentoInicial"></div>
+                <div class="form-group"><label>Pessoas Beneficiadas</label><input type="number" [(ngModel)]="impactoSocialData.pessoasBeneficiadas"></div>
+                <div class="form-group"><label>Duração do Projeto (anos)</label><input type="number" [(ngModel)]="impactoSocialData.duracaoProjeto"></div>
+                <div class="form-group"><label>Custo por Beneficiário (R$)</label><input type="number" [(ngModel)]="impactoSocialData.custoBeneficiario"></div>
+                <div class="form-group"><label>Retorno Social Esperado (%)</label><input type="number" [(ngModel)]="impactoSocialData.retornoEsperado"></div>
+            </div>
+            <div class="action-bar"><button class="btn btn-secondary">Calcular Impacto Social</button></div>
+          </div>
+        </div>
+        
+        <div *ngSwitchCase="'Decisão Familiar'">
+          <div class="card-header"><h2 class="card-title">Análise de Decisão Familiar</h2></div>
+          <div class="card-body">
+            <div class="form-grid-familiar">
+                <div class="form-group span-2"><label>Decisão a Ser Tomada</label><textarea rows="3" [(ngModel)]="decisaoFamiliarData.decisao"></textarea></div>
+                <div class="form-group"><label>Impacto Financeiro (R$)</label><input type="number" [(ngModel)]="decisaoFamiliarData.impactoFinanceiro"></div>
+                <div class="form-group"><label>Impacto Temporal (meses)</label><input type="number" [(ngModel)]="decisaoFamiliarData.impactoTemporal"></div>
+                <div class="form-group"><label>Risco (1-10)</label><input type="number" [(ngModel)]="decisaoFamiliarData.risco"></div>
+                <div class="form-group span-2"><label>Benefícios Esperados</label><textarea rows="3" [(ngModel)]="decisaoFamiliarData.beneficios"></textarea></div>
+                <div class="form-group span-2"><label>Riscos Identificados</label><textarea rows="3" [(ngModel)]="decisaoFamiliarData.riscosIdentificados"></textarea></div>
+            </div>
+            <div class="action-bar"><button class="btn btn-secondary">Calcular Decisão Familiar</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary btn-full-width">Analisar com IA Castelo Forte</button>
+</div>

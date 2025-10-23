@@ -1,0 +1,123 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Gestão de Dívidas</h1>
+  </div>
+
+  <div class="info-banner">
+    <p>Dívidas de consumo são como invasores dentro das muralhas do seu "Castelo Forte", minando sua estrutura e liberdade. Esta ferramenta ajuda você a planejar a libertação.</p>
+    <p class="philosophy-quote"><strong>Filosofia Castelo Forte:</strong> A eliminação estratégica de dívidas é uma reconquista de controle e paz, aplicando a Chave Mestra para remover o gargalo que impede seu progresso.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Suas Dívidas</h2>
+    </div>
+    <div class="card-body">
+      <div class="form-grid">
+        <div class="form-group span-3">
+          <label for="debtName">Nome da Dívida:</label>
+          <input type="text" id="debtName" [(ngModel)]="novaDivida.nome">
+        </div>
+        <div class="form-group">
+          <label for="debtBalance">Saldo Devedor (R$):</label>
+          <input type="number" id="debtBalance" [(ngModel)]="novaDivida.saldoDevedor">
+        </div>
+        <div class="form-group">
+          <label for="debtMinPayment">Pagamento Mínimo (R$):</label>
+          <input type="number" id="debtMinPayment" [(ngModel)]="novaDivida.pagamentoMinimo">
+        </div>
+        <div class="form-group">
+          <label for="debtInterest">Taxa de Juros (%):</label>
+          <input type="number" id="debtInterest" [(ngModel)]="novaDivida.taxaJuros">
+        </div>
+        <div class="form-group">
+          <label for="debtInterestType">Tipo de Taxa:</label>
+          <select id="debtInterestType" [(ngModel)]="novaDivida.tipoTaxa">
+            @for (tipo of tiposDeTaxa; track tipo) {
+              <option [value]="tipo">{{ tipo }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-group-button">
+          <button class="btn btn-dark">Adicionar Dívida</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card recommendations-card">
+    <div class="card-header">
+      <h2 class="card-title">Recomendações Personalizadas (VIPE ID)</h2>
+    </div>
+    <div class="card-body">
+      <div class="recommendation-content">
+        <div class="strategy-section">
+          <h3>Estratégia Recomendada</h3>
+          <p>Seu perfil Coração Inquieto se beneficia da estratégia Bola de Neve. As vitórias rápidas ao quitar dívidas menores primeiro irão reduzir sua ansiedade e aumentar sua confiança.</p>
+          <div class="suggested-strategy">
+            <span>Estratégia sugerida:</span>
+            <span class="tag">{{ estrategiaRecomendada }}</span>
+          </div>
+        </div>
+        <div class="motivation-section">
+          <h3>Dicas de Motivação</h3>
+          <ul>
+            @for (dica of dicasMotivacao; track dica) {
+              <li>{{ dica }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dark-cards-grid">
+    <div class="dark-card">
+      <h3>A Chave Mestra e Dívidas</h3>
+      <p>A Teoria das Restrições identifica o principal gargalo no seu sistema financeiro. Se dívidas com juros altos são esse gargalo, toda energia e recursos excedentes devem ser focados em sua eliminação.</p>
+      <p><strong>Exemplo Prático:</strong> Um cliente tem investimentos modestos, mas uma dívida de cartão de crédito de R$ 20.000 com juros de 15% a.m. O consultor aplica a Chave Mestra e a dívida é o gargalo. Temporariamente, aportes em investimentos são pausados e todo recurso é direcionado para quitar a dívida, pois a "rentabilidade" de quitar essa dívida é muito superior a qualquer ganho de investimento.</p>
+      <p><strong>Reflexão:</strong> Qual dívida está agindo como o principal "gargalo" no seu progresso financeiro atual? Concentrar seus esforços aqui pode trazer o maior alívio.</p>
+    </div>
+    <div class="dark-card">
+      <h3>Snowball vs. Avalanche (Personalização VIPE ID)</h3>
+      <p>A escolha do método de quitação pode ser alinhada ao seu perfil comportamental (VIPE ID).</p>
+      <p><strong>Debt Snowball (Bola de Neve):</strong> Quitar a menor dívida primeiro. Gera vitórias psicológicas rápidas.</p>
+      <p><strong>Debt Avalanche (Avalanche):</strong> Quitar a dívida com maior juro primeiro. Matematicamente mais eficiente.</p>
+      <p><strong>Exemplos Práticos (VIPE ID):</strong></p>
+      <ul>
+        <li><strong>"Coração Inquieto"</strong> ou <strong>"Explorador Generoso" (Emocionais)</strong> Recomenda-se Snowball.</li>
+        <li><strong>"Construtor Analítico"</strong> ou <strong>"Guardião" (Racionais)</strong> Recomenda-se Avalanche.</li>
+      </ul>
+      <p><strong>Reflexão:</strong> Qual método parece mais motivador PARA VOCÊ continuar no plano?</p>
+    </div>
+    <div class="dark-card span-2">
+      <h3>Money Scripts e Origem das Dívidas</h3>
+      <p>A gestão eficaz da dívida envolve entender sua origem. Investigue os Money Scripts (crenças sobre dinheiro) e Pontos de Inflamação Financeira (eventos passados marcantes) que podem ter levado ao endividamento.</p>
+      <p><strong>Exemplo Prático:</strong> Um cliente está endividado por gastos com status. A análise revela um Money Script de "Status Financeiro" originado em um Ponto de Inflamação na adolescência (vergonha sobre condição financeira). O consultor trabalha no plano técnico para quitar a dívida E em mentorias para ressignificar o valor pessoal, desvinculando-o da exibição de riqueza e alinhando-o aos seus VIPE (Valores Inegociáveis e Princípios Eternos), prevenindo a reincidência.</p>
+      <p><strong>Reflexões:</strong></p>
+      <ul>
+        <li>Quais crenças sobre dinheiro (Money Scripts) podem ter contribuído para suas dívidas atuais?</li>
+        <li>Existem eventos passados (Pontos de Inflamação Financeira) que marcaram sua relação com dívidas?</li>
+      </ul>
+    </div>
+  </div>
+
+  <button class="btn btn-dark btn-full-width">Gerar Relatório de Dívidas</button>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state-container">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+      <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save">
+      <i class="fa-solid fa-save"></i> Salvar
+    </button>
+  </div>
+</div>

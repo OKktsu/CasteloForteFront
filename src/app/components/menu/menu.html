@@ -1,85 +1,38 @@
 <aside class="sidebar" [class.sidebar-collapsed]="isSidebarCollapsed">
     <div class="sidebar-header">
-        <span>Castelo Forte</span>
+        <img src="assets/logoCasteloForte.png" alt="" class="logo">
         <div id="sidebar-toggle" (click)="toggleSidebar()">
             <i class="fa-solid" [class.fa-chevron-left]="!isMobileView" [class.fa-times]="isMobileView"></i>
         </div>
     </div>
 
+    <div class="search-bar">
+        <i class="fa-solid fa-search search-icon"></i>
+        <input 
+            type="text" 
+            placeholder="Pesquisar no menu..." 
+            class="search-input"
+            [(ngModel)]="searchTerm"
+            (ngModelChange)="filterNavItems()">
+    </div>
+
     <ul class="sidebar-nav">
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/metodo-vipe']" class="nav-link"><i class="fa-solid fa-gem"></i> <span class="nav-text">Método VIPE</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/geometria-pessoal']" class="nav-link"><i class="fa-solid fa-draw-polygon"></i> <span class="nav-text">Geometria Pessoal</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/roda-vida-financeira']" class="nav-link"><i class="fa-solid fa-rotate"></i> <span class="nav-text">Roda da Vida Financeira</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/Contentamento-financeiro']" class="nav-link"><i class="fa-solid fa-file-invoice-dollar"></i> <span class="nav-text">Contentamento Financiado</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/plano-estandarte']" class="nav-link"><i class="fa-solid fa-map"></i> <span class="nav-text">Plano Estandarte</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/vipe-id']" class="nav-link"><i class="fa-solid fa-id-card"></i> <span class="nav-text">VIPE ID</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/money-scripts']" class="nav-link"><i class="fa-solid fa-scroll"></i> <span class="nav-text">Money Scripts</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/vieses-cognitivos']" class="nav-link"><i class="fa-solid fa-brain"></i> <span class="nav-text">Vieses Cognitivos</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/chave-mestra']" class="nav-link"><i class="fa-solid fa-key"></i> <span class="nav-text">A Chave Mestra</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/inteligencia-financeira']" class="nav-link"><i class="fa-solid fa-lightbulb"></i> <span class="nav-text">Inteligência Financeira</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/metodo-vfp']" class="nav-link"><i class="fa-solid fa-chess-rook"></i> <span class="nav-text">Método VFP (Sala de Guerra)</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/plano-legado']" class="nav-link"><i class="fa-solid fa-landmark"></i> <span class="nav-text">Plano Legado</span></a>
-        </li>
-
-        <li class="nav-separator"></li>
-
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/app-castelo-forte']" class="nav-link"><i class="fa-solid fa-rocket"></i> <span class="nav-text">APP Castelo Forte</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/orcamento-base-zero']" class="nav-link"><i class="fa-solid fa-calculator"></i> <span class="nav-text">Orçamento - Base Zero</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/gestao-dividas']" class="nav-link"><i class="fa-solid fa-hand-holding-dollar"></i> <span class="nav-text">Gestão de Dívidas</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/planos-projetos']" class="nav-link"><i class="fa-solid fa-bullseye"></i> <span class="nav-text">Planos e Projetos</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/balanco-patrimonial']" class="nav-link"><i class="fa-solid fa-scale-balanced"></i> <span class="nav-text">Balanço Patrimonial</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/gestao-investimentos']" class="nav-link"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Gestão de Investimentos</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/blindagem-patrimonial']" class="nav-link"><i class="fa-solid fa-shield-halved"></i> <span class="nav-text">Blindagem Patrimonial (Seguros)</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/painel-controle']" class="nav-link"><i class="fa-solid fa-chess-board"></i> <span class="nav-text">Painel de Controle do Castelo</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/sistema-nervoso-central']" class="nav-link"><i class="fa-solid fa-sitemap"></i> <span class="nav-text">Sistema Nervoso Central</span></a>
-        </li>
-        
-        <li class="nav-separator"></li>
-        <li class="nav-title">RELATÓRIOS</li>
-        
-        <li class="nav-item" routerLinkActive="active">
-            <a [routerLink]="['/propostas']" class="nav-link"><i class="fa-solid fa-file-lines"></i> <span class="nav-text">Todas as Propostas</span></a>
-        </li>
+        @for (item of filteredNavItems; track $index) {
+            @if (item.type === 'title') {
+                <li class="nav-title">{{ item.text }}</li>
+            }
+            @if (item.type === 'separator') {
+                <li class="nav-separator"></li>
+            }
+            @if (item.type === 'link') {
+                <li class="nav-item" routerLinkActive="active">
+                    <a [routerLink]="[item.path]" class="nav-link">
+                        <i class="fa-solid {{ item.icon }}"></i> 
+                        <span class="nav-text">{{ item.text }}</span>
+                    </a>
+                </li>
+            }
+        }
     </ul>
         
     <div class="sidebar-footer">
@@ -95,21 +48,20 @@
             <button class="mobile-menu-toggle" (click)="toggleSidebar()">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <h2>Sistema de Consultoria</h2>
         </div>
         <div class="top-bar-right">
             <span class="user-greeting">Olá, paulo@faseo.com</span>
             
             <div class="custom-select-wrapper">
                 <div class="select-display" (click)="toggleDropdown($event)" [class.open]="isDropdownOpen">
-                    <span>{{ selectedUser || 'Selecione um cliente...' }}</span>
+                    <span>{{ selectedUser || '' }}</span>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 @if (isDropdownOpen) {
                   <div class="select-dropdown open">
                       <div class="dropdown-header">
                           <span>Selecione um cliente</span>
-                          <a href="#">+ Novo Cliente</a>
+                          <a href="/dashboard-clientes">+ Novo Cliente</a>
                       </div>
                       <ul class="dropdown-list">
                           @for (user of userList; track user) {
@@ -117,19 +69,41 @@
                           }
                       </ul>
                       <div class="dropdown-footer">
-                          <a href="#">Gerenciar clientes</a>
+                          <a href="/dashboard-clientes">Gerenciar clientes</a>
                       </div>
                   </div>
                 }
             </div>
 
-            <button class="btn btn-outline" (click)="clearUserSelection()">Limpar Seleção</button>
-            <button class="btn btn-primary">Meu Perfil</button>
-            <button class="btn btn-danger">Logout</button>
+            <div class="desktop-actions">
+                <button class="btn btn-outline" (click)="clearUserSelection()">Limpar Seleção</button>
+                <button class="btn btn-primary" [routerLink]="['/meu-perfil']">Meu Perfil</button>
+                <button class="btn btn-danger"  [routerLink]="['/login']">Logout</button>
+            </div>
+
+            <div class="mobile-settings">
+                <button class="settings-toggle" (click)="toggleSettingsMenu($event)">
+                    <i class="fa-solid fa-cog"></i>
+                </button>
+
+                @if (isSettingsMenuOpen) {
+                    <div class="settings-menu">
+                        <a class="settings-item" [routerLink]="['/meu-perfil']">Meu Perfil</a>
+                        <a class="settings-item" (click)="clearUserSelection()">Limpar Seleção</a>
+                        <div class="settings-separator"></div>
+                        <a class="settings-item danger" [routerLink]="['/login']">Logout</a>
+                    </div>
+                }
+            </div>
         </div>
     </header>
 
-    <main class="main-content">
+    <main class="main-content" *ngIf="selectedUser">
         <router-outlet></router-outlet>
     </main>
+    
+    <div class="no-user-selected" *ngIf="!selectedUser">
+        <div class="spinner"></div>
+        <p>Selecione um cliente para visualizar os dados.</p>
+    </div>
 </div>

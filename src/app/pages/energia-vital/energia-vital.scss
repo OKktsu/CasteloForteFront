@@ -1,0 +1,81 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS ESPECÍFICOS DA PÁGINA ---
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+.pillars-column, .calculator-column {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.column-title {
+  font-size: 1.5rem;
+  color: $text-color-dark;
+  padding-bottom: 15px;
+  border-bottom: 1px solid $secondary-bg-color;
+  margin: 0;
+}
+
+.pillar-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  h3 { margin: 0; }
+}
+
+.pillar-description {
+  font-size: 0.9rem;
+  color: color.adjust($text-color-dark, $lightness: 25%);
+  margin: 0;
+}
+
+.score-section {
+  label { font-weight: 500; }
+  input[type="range"] { width: 100%; accent-color: $accent-color; margin-top: 5px; }
+}
+
+.form-group {
+  display: flex; flex-direction: column;
+  label { margin-bottom: 8px; font-size: 0.9rem; font-weight: 500; }
+  input, textarea {
+    border: 1px solid $border-color; padding: 10px 12px;
+    border-radius: 8px; font-size: 1rem;
+    &:focus { outline-color: $accent-color; }
+  }
+}
+
+.calculator-card {
+  background-color: $status-success-bg;
+  border-color: color.adjust($status-success-bg, $lightness: -10%);
+}
+
+.results-section {
+  text-align: center;
+  .result-item {
+    margin-bottom: 1.5rem;
+    &:last-child { margin-bottom: 0; }
+    span { color: color.adjust($text-color-dark, $lightness: 20%); }
+    .result-value {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
+      color: $status-success-text;
+      margin-top: 5px;
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: $breakpoint-md) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}

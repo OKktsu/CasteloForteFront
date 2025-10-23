@@ -1,0 +1,89 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Inteligência Financeira</h1>
+      <p class="breadcrumb">Módulo: Otimização</p>
+    </div>
+  </div>
+
+  <nav class="tabs-nav">
+    @for (tab of mainTabs; track tab.id) {
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === tab.id" 
+        (click)="selecionarTab(tab.id)">
+        {{ tab.label }}
+      </button>
+    }
+  </nav>
+
+  <div class="tab-content">
+
+    @if (activeTab === 'painel') {
+      <div class="card">
+        <div class="card-body">
+          <div class="panel-grid">
+            <div class="form-section">
+              <h3 class="section-title">Entradas do Score</h3>
+              <div class="form-group"><label>Anos de Relacionamento</label><input type="number" [(ngModel)]="scoreData.anosRelacionamento"></div>
+              <div class="form-group"><label>Volume de Investimentos (R$)</label><input type="number" [(ngModel)]="scoreData.volumeInvestimentos"></div>
+              <div class="form-group"><label>Score de Crédito (Simplificado)</label><select [(ngModel)]="scoreData.scoreCredito"> @for (option of scoresCreditoOptions; track option) { <option [value]="option">{{ option }}</option> } </select></div>
+            </div>
+
+            <div class="results-section">
+              <h3 class="section-title">Resultados Principais</h3>
+              <div class="kpi-grid">
+                <div class="kpi-item">
+                  <span class="kpi-label">Seu Score de Relacionamento</span>
+                  <span class="kpi-value">50 / 100</span>
+                </div>
+                <div class="kpi-item success">
+                  <span class="kpi-label">Potencial de Economia Anual</span>
+                  <span class="kpi-value">R$ 1.500,00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <div class="actions-list">
+            <h3 class="section-title">Ações Recomendadas</h3>
+            @for (acao of acoesRecomendadas; track acoesRecomendadas) { 
+              <div class="checkbox-group">
+                <input type="checkbox" [id]="'acao-' + acao.id" [(ngModel)]="acao.selecionada">
+                <label [for]="'acao-' + acao.id">{{ acao.descricao }}</label>
+              </div> 
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (activeTab === 'calculadoras') {
+      <div class="calculators-grid">
+        <div class="card"><div class="card-header"><h2 class="card-title">Otimizador de Custos</h2></div><div class="card-body"><div class="form-group"><label>Tarifa Mensal</label><input type="number" [(ngModel)]="otimizadorCustos.tarifaMensal"></div><div class="form-group"><label>Anuidade Principal</label><input type="number" [(ngModel)]="otimizadorCustos.anuidadePrincipal"></div><div class="highlight-box"><span>Custo Anual: R$ 1.500,00</span></div></div></div>
+        <div class="card"><div class="card-header"><h2 class="card-title">ROI Cartão Premium</h2></div><div class="card-body"><div class="form-group"><label>Anuidade</label><input type="number" [(ngModel)]="roiCartao.anuidade"></div><div class="form-group"><label>Economia Seguro Viagem</label><input type="number" [(ngModel)]="roiCartao.economiaSeguro"></div><div class="highlight-box"><span>Resultado: R$ 200,00</span></div></div></div>
+        <div class="card"><div class="card-header"><h2 class="card-title">Dinheiro vs. Pontos</h2></div><div class="card-body"><div class="form-group"><label>Preço em Dinheiro</label><input type="number" [(ngModel)]="compraVsPontos.precoDinheiro"></div><div class="form-group"><label>Custo em Pontos</label><input type="number" [(ngModel)]="compraVsPontos.custoPontos"></div><div class="highlight-box"><span>Dinheiro é R$ 100,00 melhor</span></div></div></div>
+        <div class="card"><div class="card-header"><h2 class="card-title">ROI Milhas</h2></div><div class="card-body"><div class="form-group"><label>Milhas Usadas</label><input type="number" [(ngModel)]="roiMilhas.milhasUsadas"></div><div class="form-group"><label>Valor por Milheiro</label><input type="number" [(ngModel)]="roiMilhas.valorPorMil"></div><div class="highlight-box"><span>Valor Gerado: R$ 4.000,00</span></div></div></div>
+        <div class="card"><div class="card-header"><h2 class="card-title">Custo de Oportunidade</h2></div><div class="card-body"><div class="form-group"><label>Taxas Anuais</label><input type="number" [(ngModel)]="custoOportunidade.totalTaxas"></div><div class="form-group"><label>Rendimento Anual (%)</label><input type="number" [(ngModel)]="custoOportunidade.taxaRendimento"></div><div class="highlight-box"><span>Custo: R$ 96,00/ano</span></div></div></div>
+      </div>
+    }
+  </div>
+
+  <button class="btn btn-primary btn-full-width">Analisar com IA Castelo Forte</button>
+
+  <div class="card">
+     <div class="card-header">
+        <h2 class="card-title">Análises de IA</h2>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+      <p>Use o botão "Analisar com IA Castelo Forte" para gerar análises.</p>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </footer>
+</div>

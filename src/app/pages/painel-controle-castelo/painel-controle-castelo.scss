@@ -1,0 +1,147 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+.page-container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+// Estilos do Cabeçalho da Página (Adicionado)
+.page-header {
+  margin-bottom: 5px;
+}
+
+// Banner azul no topo da página
+.info-banner {
+  background-color: #ffff;
+  border-left: 5px solid $accent-color;
+  padding: 15px 20px;
+  border-radius: 8px;
+  
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+}
+
+// Estilo base do card branco
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid $border-color;
+}
+
+// Grid principal com 3 colunas de KPIs
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.kpi-column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-right: 30px;
+
+  &:not(:last-child) {
+    border-right: 1px solid $border-color;
+  }
+  
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.column-title {
+  font-size: 1.25rem;
+  color: $text-color-dark;
+  margin: 0 0 10px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $border-color;
+}
+
+.kpi-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.kpi-icon {
+  font-size: 1.5rem;
+  color: $accent-color;
+  margin-top: 5px;
+}
+
+.kpi-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-title {
+  font-size: 0.9rem;
+  color: color.adjust($text-color-dark, $lightness: 30%);
+  margin-bottom: 4px;
+}
+
+.kpi-value {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: $text-color-dark;
+
+  &.status-negative {
+    color: $logout-red;
+  }
+}
+
+.kpi-description {
+  font-size: 0.8rem;
+  color: color.adjust($text-color-dark, $lightness: 40%);
+}
+
+// Footer do painel principal
+.panel-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid $border-color;
+}
+
+// Card de Análises de IA
+.analysis-body .empty-state {
+  text-align: center;
+  color: color.adjust($text-color-dark, $lightness: 35%);
+  padding: 20px 0;
+  p { margin: 5px 0; }
+}
+
+.card-header {
+  padding: 0;
+}
+
+.card-title {
+  color: $text-color-dark;
+}
+
+.card-subtitle {
+  color: color.adjust($text-color-dark, $lightness: 30%);
+}
+
+// Responsividade
+@media (max-width: $breakpoint-md) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-column {
+    padding-right: 0;
+    &:not(:last-child) {
+      border: none;
+      padding-bottom: 30px;
+    }
+  }
+}

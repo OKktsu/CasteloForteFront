@@ -1,0 +1,84 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Gestão de Investimentos</h1>
+      <p class="page-subtitle">Módulo: APP Castelo Forte</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Consolidador de Carteira</h2>
+    </div>
+    <div class="card-body">
+      <div class="add-investment-form">
+        <label>Adicionar Novo Investimento</label>
+        <div class="form-row">
+          <input type="text" placeholder="Nome (Ex: Tesouro Selic 2029)" [(ngModel)]="novoInvestimento.nome">
+          <select [(ngModel)]="novoInvestimento.classe"><option value="" disabled>Classe de Ativo</option></select>
+          <input type="number" placeholder="Valor" [(ngModel)]="novoInvestimento.valor">
+          <select [(ngModel)]="novoInvestimento.moeda"><option value="BRL">BRL</option></select>
+          <button class="btn btn-primary">Adicionar</button>
+        </div>
+      </div>
+      <div class="portfolio-summary">
+        <div class="summary-item">
+          <span class="label">Patrimônio Total</span>
+          <strong class="value">R$ 0,00</strong>
+          <small>Ativos adicionados: 52</small>
+        </div>
+        <div class="summary-item-placeholder">
+          <span>Alocação por Ativo: Sem dados para exibir.</span>
+        </div>
+        <div class="summary-item-placeholder">
+          <span>Exposição Cambial: Sem dados para exibir.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="two-column-grid">
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Benchmarks de Mercado</h2></div>
+      <div class="card-body benchmark-inputs">
+        <div class="form-group"><label>SELIC (% a.a)</label><input type="number" [(ngModel)]="benchmarks.selic"></div>
+        <div class="form-group"><label>IPCA+ (% a.a)</label><input type="number" [(ngModel)]="benchmarks.ipca"></div>
+        <div class="form-group"><label>IBOV (% a.a)</label><input type="number" [(ngModel)]="benchmarks.ibov"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h2 class="card-title">Simulador de Aportes (DCA)</h2></div>
+      <div class="card-body">
+        <div class="form-group"><label>Aporte Inicial (R$)</label><input type="number" [(ngModel)]="simuladorDCA.aporteInicial"></div>
+        <div class="form-group"><label>Aportes Mensais (R$)</label><input type="number" [(ngModel)]="simuladorDCA.aporteMensal"></div>
+        <div class="form-group"><label>Taxa de Juros Anual (%)</label><input type="number" [(ngModel)]="simuladorDCA.taxaAnual"></div>
+        <div class="form-group"><label>Período (anos)</label><input type="number" [(ngModel)]="simuladorDCA.periodoAnos"></div>
+        <div class="result-box">
+          <strong>R$ 92.221,06</strong>
+          <small>(Valor investido: R$ 61.000,00 | Juros: R$ 31.221,06)</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h2 class="card-title">Objetivos de Investimento</h2></div>
+    <div class="card-body">
+      <textarea rows="4" placeholder="Descreva seus principais objetivos com estes investimentos (ex: aposentadoria, comprar imóvel, liberdade financeira, etc.)" [(ngModel)]="objetivos"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+</div>

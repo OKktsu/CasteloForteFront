@@ -1,0 +1,87 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- TEMA CLARO PARA ESTE COMPONENTE ---
+:host {
+  // Sobrescreve o fundo escuro padrão
+  background-color: #f4f7fa;
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  label { display: block; margin-bottom: 8px; font-size: 0.9rem; }
+  input { border: 1px solid $border-color; padding: 10px 12px; border-radius: 8px; font-size: 1rem; width: 98%; &:focus { outline-color: $accent-color; } }
+}
+
+// --- ESTILOS ESPECÍFICOS DA PÁGINA ---
+.add-investment-form {
+  label { display: block; margin-bottom: 8px; font-weight: 500; }
+  .form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.5fr auto;
+    gap: 15px;
+    align-items: flex-end;
+  }
+  input, select { border: 1px solid $border-color; padding: 10px 12px; border-radius: 8px; font-size: 1rem; width: 90%; &:focus { outline-color: $accent-color; } }
+}
+
+.portfolio-summary {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid $border-color;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1.5fr;
+  gap: 25px;
+  
+  .summary-item {
+    background-color: #f8fafc;
+    border: 1px solid $border-color;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    .label { font-size: 0.9rem; }
+    .value { display: block; font-size: 1.8rem; font-weight: bold; margin: 5px 0; }
+    small { font-size: 0.8rem; }
+  }
+  .summary-item-placeholder {
+    border: 1px dashed $border-color;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: color.adjust($text-color-dark, $lightness: 40%);
+  }
+}
+
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+.benchmark-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.result-box {
+  background-color: $status-success-bg;
+  border: 1px solid color.adjust($status-success-bg, $lightness: -10%);
+  color: $status-success-text;
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  strong { font-size: 1.5rem; display: block; }
+  small { opacity: 0.8; }
+}
+
+textarea {
+  width: 100%; border: 1px solid $border-color; padding: 10px 12px;
+  border-radius: 8px; font-size: 1rem;
+  &:focus { outline-color: $accent-color; }
+}

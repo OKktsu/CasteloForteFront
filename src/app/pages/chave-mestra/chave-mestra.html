@@ -1,0 +1,71 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">A Chave Mestra</h1>
+      <p class="breadcrumb">Módulo: Ferramentas VIPE</p>
+    </div>
+  </div>
+
+  <div class="info-banner">
+    <p>Identifique a restrição principal que está limitando o progresso do seu "Castelo Forte" financeiro. Esta ferramenta aplica a Teoria das Restrições (TOC) para encontrar a "chave mestra" que abrirá todas as portas.</p>
+    <div class="">
+      <p>Para cada dimensão, avalie o impacto que ela tem no seu progresso financeiro e forneça detalhes específicos.</p>
+    </div>
+  </div>
+
+
+  @for (dimensao of dimensoes; track dimensao.titulo) {
+    <div class="card dimension-card">
+      <div class="card-header">
+        <h2 class="card-title">{{ dimensao.titulo }}</h2>
+        <p class="card-subtitle">{{ dimensao.descricao }}</p>
+      </div>
+      <div class="card-body">
+        @for (question of dimensao.questions; track question.label) {
+          <div class="question-block">
+            <label class="question-label">{{ question.label }}</label>
+            
+            @if (question.hasImpactScale) {
+              <div class="impact-buttons">
+                @for (opcao of opcoesImpacto; track opcao) {
+                  <button class="btn"
+                          [class.btn-secondary]="question.impacto === opcao"
+                          [class.btn-light]="question.impacto !== opcao"
+                          (click)="selectImpacto(question, opcao)">
+                    {{ opcao }}
+                  </button>
+                }
+              </div>
+            }
+            
+            <textarea rows="4" placeholder="Detalhes específicos..." [(ngModel)]="question.detalhes"></textarea>
+          </div>
+        }
+      </div>
+    </div>
+  }
+  <div class="panel-footer"><button class="btn btn-primary ">Analisar com IA Castelo Forte</button></div>
+
+
+  <div class="card">
+    <div class="card-header"><h2 class="card-title">Filosofia Castelo Forte: A Chave Mestra</h2></div>
+    <div class="card-body philosophy-content">
+      <p>A Teoria das Restrições (TOC) aplicada às finanças pessoais identifica o "gargalo" que limita o progresso do seu "Castelo Forte".</p>
+      <p><em>"Identificar e superar a restrição principal é como encontrar a chave mestra que abre todas as portas do seu castelo financeiro."</em></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+</div>

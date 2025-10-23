@@ -1,0 +1,84 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Kingdom's Seed</h1>
+      <p class="page-subtitle">Módulo: Plano Legado</p>
+    </div>
+  </div>
+
+  <div class="alert-banner">
+    <h3 class="alert-title">Ferramenta em Construção</h3>
+    <p>O Kingdom's Seed está sendo desenvolvido para oferecer uma experiência completa de diagnóstico e desenvolvimento de lideranças empresariais baseada em princípios bíblicos.</p>
+    <div class="alert-suggestion">
+      <i class="fa-solid fa-circle-info"></i>
+      <div>
+        <strong>Em breve você terá acesso a:</strong>
+        <ul>
+          <li>Diagnóstico completo dos 7 pilares do Reino</li>
+          <li>Rede de conexão com outros empreendedores cristãos</li>
+          <li>Recursos de discipulado empresarial personalizado</li>
+          <li>Análises de IA baseadas na metodologia Kingdom's Seed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="disabled-container">
+      <p class="info-banner">
+        Bem-vindo ao ecossistema para negócios do Reino. Utilize as abas abaixo para fazer um diagnóstico da maturidade do seu negócio, conectar-se com outros empreendedores e encontrar recursos para o seu desenvolvimento.
+      </p>
+      
+      <nav class="tabs-nav-disabled">
+        <button class="tab-button active">Diagnóstico K.I.N.G.D.O.M.</button>
+        <button class="tab-button">Comunidade</button>
+        <button class="tab-button">Discipulado</button>
+      </nav>
+    
+      <div class="main-layout">
+        <div class="left-column">
+          <p class="column-description">Faça um diagnóstico rápido de maturidade do seu negócio à luz dos 7 pilares do framework K.I.N.G.D.O.M. Avalie cada área de 0 (inexistente) a 10 (excelente) para identificar seus pontos fortes e áreas de atenção.</p>
+          
+          @for (item of maturidadeItens; track item.titulo) {
+            <div class="card item-card">
+              <div class="card-body">
+                <h3>{{ item.titulo }}</h3>
+                <p class="item-description">{{ item.descricao }}</p>
+                <div class="score-section">
+                  <input type="range" min="0" max="10" [(ngModel)]="item.pontuacao" [disabled]="true">
+                  <span class="score-value">{{ item.pontuacao }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+    
+        <div class="right-column">
+          <div class="card chart-card-gray">
+            <h3 class="chart-title">Mapa de Maturidade do Reino</h3>
+            <div class="radar-chart-container">
+              <svg viewBox="0 0 300 300">
+                <g transform="translate(150,150)">
+                  @for (i of [1,2,3,4,5]; track i) { <polygon [attr.points]="'0,'+(-20*i)+' '+(17.32*i)+','+(-10*i)+' '+(17.32*i)+','+(10*i)+' 0,'+(20*i)+' '+(-17.32*i)+','+(10*i)+' '+(-17.32*i)+','+(-10*i)" fill="none" stroke="#cbd5e1" stroke-width="1"/> }
+                  @for (i of [0,1,2]; track i) { <line x1="0" y1="-100" x2="0" y2="100" [attr.transform]="'rotate(' + i * 60 + ')'" stroke="#cbd5e1" stroke-width="1"/> }
+                  <polygon points="0,-50 43.3,-25 43.3,25 0,50 -43.3,25 -43.3,-25" fill="rgba(100, 116, 139, 0.4)" stroke="#94a3b8" stroke-width="2"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-disabled btn-full-width" disabled>Analisar Maturidade do Reino com IA</button>
+    
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Análises de IA</h2>
+          <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+        </div>
+        <div class="card-body empty-state">
+          <p><strong>Nenhuma análise encontrada.</strong></p>
+          <p>Use o botão "Analisar com IA Castelo Forte" na ferramenta para gerar análises.</p>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Money Scripts</h1>
+      <p class="breadcrumb">Módulo: Métodos VIPE</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body setup-card">
+      <div class="radio-group">
+        <label>Preenchendo para:</label>
+        <div class="radio-item">
+          <input type="radio" id="pessoa1" name="respondents" [value]="1" [(ngModel)]="numberOfRespondents" (ngModelChange)="updateRespondents()">
+          <label for="pessoa1">1 Pessoa</label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" id="pessoa2" name="respondents" [value]="2" [(ngModel)]="numberOfRespondents" (ngModelChange)="updateRespondents()">
+          <label for="pessoa2">2 Pessoas (Casal/Sócios)</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @for (respondent of respondents; track $index; let respIndex = $index) {
+    <div class="card questionnaire-card">
+      <div class="card-header">
+        <h2 class="card-title">Suas Respostas {{ respondents.length > 1 ? '(Pessoa ' + (respIndex + 1) + ')' : '' }}</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="nome-{{ respIndex }}">Nome:</label>
+          <input type="text" id="nome-{{ respIndex }}" [(ngModel)]="respondent.nome">
+        </div>
+
+        @for (section of questionSections; track section.title; let secIndex = $index) {
+          <div class="question-section">
+            <h3 class="section-title">{{ section.title }}</h3>
+            @for (question of section.questions; track $index; let questIndex = $index) {
+              <div class="question-item">
+                <p class="question-text">{{ question.text }}</p>
+                <div class="slider-container">
+                  <input type="range" 
+                         min="1" 
+                         max="5" 
+                         step="1"
+                         class="likert-slider"
+                         [id]="'q-' + respIndex + '-' + secIndex + '-' + questIndex"
+                         [(ngModel)]="respondent.respostas[secIndex + '-' + questIndex]">
+                  <div class="slider-value-labels">
+                    @for (option of likertOptions; track option; let i = $index) {
+                      <span class="value-label" 
+                            [class.active]="respondent.respostas[secIndex + '-' + questIndex] === (i + 1)">
+                        {{ option }}
+                      </span>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+        <div class="panel-footer"><button class="btn btn-primary">Analisar com IA Castelo Forte</button></div>
+      </div>
+    </div>
+  }
+  
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Análises de IA</h2>
+      <p class="card-subtitle">Histórico de análises geradas para esta ferramenta</p>
+    </div>
+    <div class="card-body empty-state">
+      <p><strong>Nenhuma análise encontrada.</strong></p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <button class="btn btn-primary btn-save"><i class="fa-solid fa-save"></i> Salvar</button>
+  </div>
+</div>

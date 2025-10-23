@@ -1,0 +1,104 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- TEMA CLARO PARA ESTE COMPONENTE ---
+:host {
+  background-color: #f4f7fa; // Fundo claro
+  display: block;
+}
+
+// --- ESTILOS GERAIS DA PÁGINA ---
+.page-container { padding: 25px; }
+.page-header {
+  margin-bottom: 25px;
+  .page-title { font-size: 2rem; font-weight: 600; color: $text-color-dark; margin: 0; }
+  .page-description { color: color.adjust($text-color-dark, $lightness: 30%); margin-top: 5px; }
+}
+.card { background-color: #ffffff; border-radius: 12px; border: 1px solid $border-color; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
+.card-header { padding: 15px 20px; border-bottom: 1px solid $border-color; }
+.card-body { padding: 20px; }
+.card-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: $text-color-dark; }
+
+// --- LAYOUT E ESTILOS ESPECÍFICOS ---
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+.profile-card {
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  .profile-avatar {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background-color: rgba($card-border-color, 0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    color: $card-border-color;
+  }
+  .profile-name h2 { margin: 0; font-size: 1.5rem; }
+  .profile-name span { color: color.adjust($text-color-dark, $lightness: 30%); }
+  
+  .profile-body { border-top: 1px solid $border-color; padding: 16px; }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+  .info-item {
+    background-color: #f8fafc;
+    border: 1px solid $border-color;
+    padding: 15px;
+    border-radius: 8px;
+    label { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: color.adjust($text-color-dark, $lightness: 30%); margin-bottom: 8px; }
+    span { font-weight: 500; word-break: break-all; }
+  }
+
+  .profile-footer {
+    padding: 20px;
+    border-top: 1px solid $border-color;
+    text-align: right;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.stat-box {
+  display: flex; align-items: center; gap: 15px;
+  padding: 15px; border-radius: 8px;
+  &.blue { background-color: rgba($card-border-color, 0.1); .stat-icon { color: $card-border-color; } }
+  &.orange { background-color: rgba($accent-color, 0.1); .stat-icon { color: $accent-color; } }
+  &.purple { background-color: rgba(129, 101, 228, 0.1); .stat-icon { color: #8165e4; } }
+}
+.stat-icon { font-size: 1.5rem; }
+.stat-content .stat-label { font-size: 0.9rem; }
+.stat-content .stat-value { display: block; font-size: 1.8rem; font-weight: bold; }
+
+.system-info-list {
+  display: flex; flex-direction: column; gap: 12px;
+  .info-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+}
+.status-badge.active { background-color: $status-success-bg; color: $status-success-text; padding: 3px 8px; border-radius: 12px; font-weight: 500; font-size: 0.8rem; }
+
+// Responsividade
+@media (max-width: $breakpoint-md) {
+  .profile-layout { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,94 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS GERAIS DA PÁGINA (Padrão do Projeto) ---
+.page-container { padding: 25px; display: flex; flex-direction: column; gap: 25px; }
+.page-header { .page-title { font-size: 2rem; color: $text-color-dark; margin: 0; } .breadcrumb { color: $text-color-light; } }
+.info-banner { background-color: #ffffff; border: 1px solid $border-color; border-left: 5px solid $accent-color; padding: 15px 20px; border-radius: 8px; color: $text-color-dark; }
+.card { background-color: #ffffff; border-radius: 12px; border: 1px solid $border-color; color: $text-color-dark; }
+.card-header { padding: 20px 25px; border-bottom: 1px solid $border-color; }
+.card-body { padding: 25px; }
+.card-title { font-size: 1.25rem; font-weight: 600; margin: 0; }
+.card-subtitle { font-size: 0.9rem; font-weight: 300; margin-top: 4px; }
+.page-footer { display: flex; justify-content: flex-end; }
+.empty-state { text-align: center; color: color.adjust($text-color-dark, $lightness: 40%); padding: 20px; }
+.btn-full-width { width: 100%; }
+
+// --- ESTILOS ESPECÍFICOS DA PÁGINA ---
+
+.introduction-text {
+  color: $text-color-light;
+  font-size: 1.1rem;
+  text-align: center;
+  margin: -10px 0;
+}
+
+.dimension-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.question-block {
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 30px;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.question-label {
+  display: block;
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.impact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+// Botão para as opções de avaliação
+.btn-light {
+  background-color: color.adjust($border-color, $lightness: 5%);
+  border: 1px solid $border-color;
+  color: $text-color-dark;
+
+  &:hover {
+    background-color: color.adjust($border-color, $lightness: -2%);
+  }
+}
+
+textarea {
+  width: 95%;
+  border: 1px solid $border-color;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  &:focus { outline-color: $accent-color; }
+}
+
+.philosophy-content {
+  p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+// Responsividade
+@media (max-width: $breakpoint-md) {
+  .impact-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    .btn {
+      text-align: center;
+    }
+  }
+}

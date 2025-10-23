@@ -1,0 +1,115 @@
+@use 'sass:color';
+@use '../../../variables' as *;
+
+// --- ESTILOS ESPECÍFICOS DO QUESTIONÁRIO (Reutilizados do VIPE ID) ---
+
+.setup-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  input[type="radio"] { accent-color: $accent-color; }
+}
+
+.form-group {
+  margin-bottom: 20px;
+  label { display: block; margin-bottom: 8px; font-weight: 500; }
+  input { border: 1px solid $border-color; padding: 10px; border-radius: 8px; width: 100%; }
+}
+
+.question-section {
+  margin-top: 30px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: $accent-color;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 20px;
+}
+
+.question-item {
+  padding: 20px 0;
+  border-bottom: 1px solid $border-color;
+  &:last-child { border-bottom: none; }
+}
+
+.question-text {
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+// --- ESTILOS DO SLIDER ---
+.slider-container {
+  position: relative;
+  padding-top: 10px;
+}
+
+.likert-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 8px; background: $border-color;
+  outline: none; border-radius: 4px; 
+}
+.likert-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 20px; height: 20px; background: $accent-color;
+  cursor: pointer; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+.likert-slider::-moz-range-thumb {
+  width: 20px; height: 20px; background: $accent-color;
+  cursor: pointer; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.slider-value-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px; 
+  margin-top: 15px;
+}
+
+.value-label {
+  position: relative;
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 0.85rem;
+  color: color.adjust($text-color-dark, $lightness: 40%);
+  transition: all 0.2s ease;
+
+  &:first-child { text-align: left; }
+  &:last-child { text-align: right; }
+
+  &.active {
+    font-weight: bold;
+    color: $accent-color;
+    transform: scale(1.1);
+  }
+}
+
+// --- RESPONSIVIDADE ---
+@media (max-width: $breakpoint-md) {
+  .slider-value-labels { 
+    font-size: 0.7rem;
+    padding: 0;
+    .value-label {
+      text-align: center !important;
+      &.active { transform: none; }
+    }
+  }
+}
